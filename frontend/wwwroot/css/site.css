@@ -1,0 +1,71 @@
+/*Config n app setup stuff*/
+:root {
+    --text: #2f2f37;
+    --background: #F8F8F9;
+    --primary: #1f90d6;
+    --secondary: #81bcd9;
+    --secondaryshade1: #A1CDE4 ;
+    --accent: #3c6138;
+    --accentshade1: #638160;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto%20Serif:700|Noto%20Serif:400');
+
+
+body {
+  font-family: 'Noto Serif';
+  font-weight: 400;
+
+  background-color: var(--background);
+  margin: 1rem;
+}
+
+h1, h2, h3, h4, h5 {
+  /* font-weight: 700; */
+  color: var(--text);
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {
+  font-size: 2.489rem; /* 39.84px */
+  margin-bottom: 0;
+}
+
+
+h2 {font-size: 2.074rem; /* 33.12px */}
+
+h3 {font-size: 1.728rem; /* 27.68px */}
+
+h4 {font-size: 1.440rem; /* 23.04px */}
+
+h5 {font-size: 1.200rem; /* 19.2px */}
+
+small {font-size: 0.833rem; /* 13.28px */}
+
+/*Actual stuff*/
+
+#title > h1 {
+  font-size: 3rem;
+ 
+}
+
+#subtitle > p {
+  font-size: 1.44rem;
+  text-align: center;
+  margin: 0%;
+  padding: 0 3em 0.275em 11px ; /*TODO -- may need to fix*/
+}
+
+#subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.titlerow {
+  border-bottom: 5px var(--secondary) solid;
+}
+
+#titlerow-right {
+  flex-grow: 1; /*Flex grow: 1 tells the div to fill 100% of the free space*/
+}
