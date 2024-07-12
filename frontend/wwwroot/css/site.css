@@ -69,3 +69,4 @@ small {font-size: 0.833rem; /* 13.28px */}
 #titlerow-right {
   flex-grow: 1; /*Flex grow: 1 tells the div to fill 100% of the free space*/
 }
+
