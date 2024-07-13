@@ -70,3 +70,38 @@ small {font-size: 0.833rem; /* 13.28px */}
   flex-grow: 1; /*Flex grow: 1 tells the div to fill 100% of the free space*/
 }
 
+.info-text {
+  color: var(--background);
+}
+
+
+
+.info-card {
+  background-color: var(--secondary);
+}
+
+.info-card-light {
+  background-color: var(--secondaryshade1);
+}
+
+.info-card, .info-card-light {
+  border-radius: 15px;
+  margin: 0 0 2rem 0;
+  
+}
+
+.info-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+}
+
