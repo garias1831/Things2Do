@@ -17,7 +17,11 @@ body {
   font-weight: 400;
 
   background-color: var(--background);
+}
+
+#maincontent {
   margin: 1rem;
+  margin-bottom: 0;
 }
 
 h1, h2, h3, h4, h5 {
@@ -135,7 +139,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 #map-container {
   display: flex;
   height: 50rem;
-  margin: 0 0 2rem 0;
+  margin: 0 0 4rem 0;
 }
 
 #map-sidebar {

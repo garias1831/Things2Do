@@ -2,10 +2,10 @@
 function mapSetup() {
     const initX = 35.15608617490063;
     const initY = -90.05190639489136;
-    const map = L.map('map', {
-        zoomControl : false, worldCopyJump : true}).setView([initX, initY], 13);
+    const map = L.map('map', 
+        {maxZoom : 17, zoomControl : false, worldCopyJump : true}).setView([initX, initY], 13);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
+                minZoom: 3,
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
              }).addTo(map);
     var marker = L.marker([initX, initY], {draggable: true, autoPan: true}).addTo(map);
