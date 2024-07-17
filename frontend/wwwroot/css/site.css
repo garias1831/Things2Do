@@ -137,7 +137,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 /*Map, sidebar and search buttons*/
 #map-container {
   display: flex;
-  height: 50rem;
+  height: 55rem;
   margin: 0 0 4rem 0;
 }
 
