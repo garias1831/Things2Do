@@ -134,7 +134,6 @@ small {font-size: 0.833rem; /* 13.28px */}
   padding: 0 max(2rem, 15vw) 2rem max(2rem, 15vw);
 }
 
-
 /*Map, sidebar and search buttons*/
 #map-container {
   display: flex;
