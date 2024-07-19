@@ -35,7 +35,10 @@ function mapSetup() {
              }).addTo(map);
 
     //NOTE -- will have to put this somewhere accessible (to get things like location )
-    const homemarker = L.marker([initX, initY], {draggable: true, autoPan: true}).addTo(map);
+    const homemarker = L.marker([initX, initY], {
+        alt: 'search location',
+        draggable: true, 
+        autoPan: true}).addTo(map);
 
     user.locationMarker = homemarker;
     return map;
