@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "gi8Bz3ZoHfJoEnHKu8aYT2jprRMTOuJPXchkTTRMUss=",
-  "Source": ".Api",
-  "BasePath": "_content/.Api",
+  "Hash": "cWqY/hU8Eqh5k+giXp4ooF5JGjZaypJiMGK7qP6Hm9M=",
+  "Source": "Things2Do.Api",
+  "BasePath": "_content/Things2Do.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

@@ -9,4 +9,6 @@ public record class SearchPlaceDto
     decimal Lat,
     [Required] [Range(-180, 180)]
     decimal Lng
+
+    //TODO -- Add filters, etc here, subdir for filter dtos
 );
