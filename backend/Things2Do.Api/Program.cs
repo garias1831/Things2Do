@@ -1,11 +1,9 @@
 using Things2Do.Api.Endpoints;
-using Things2Do.Api.Serivces;
+using Things2Do.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Configuration.AddEnvironmentVariables();
-
-
 
 builder.Services.AddHttpClient<HereService>();
 

@@ -1,5 +1,5 @@
 using Things2Do.Api.Dtos;
-using Things2Do.Api.Serivces;
+using Things2Do.Api.Services;
 
 namespace Things2Do.Api.Endpoints;
 
@@ -17,8 +17,19 @@ public static class SearchEndpoints
         var group = app.MapGroup("search").WithParameterValidation(); 
 
         //Location + filter information transmitted in body
-        group.MapPut("/", (SearchPlaceDto searchQuery, HereService hereApi) => {
+        group.MapPut("/", async (SearchPlaceDto searchQuery, HereService hereApi) => {
             
+            try //This stuff not done yet
+            {
+                await hereApi.GetPlacesAsync(searchQuery.Lat, searchQuery.Lng);
+            }
+            catch (HttpRequestException e)
+            {
+                //NOTE -- may want to inform the client somehow?
+                Console.WriteLine($"There was an error with the HTTP Request: {e.Message}");
+                throw;
+            }
+
         });
 
         return group!;

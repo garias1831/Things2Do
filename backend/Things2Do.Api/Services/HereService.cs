@@ -1,4 +1,7 @@
-namespace Things2Do.Api.Serivces;
+using System.Net.Http.Headers;
+using Things2Do.Api.Data.Deserialization;
+
+namespace Things2Do.Api.Services;
 
 //NOTE -- may want to store the api key here (access from somewhere private)
 public class HereService
@@ -15,8 +18,26 @@ public class HereService
     {
         _httpClient = httpClient;
         _httpClient.BaseAddress = new Uri("https://browse.search.hereapi.com/v1/browse");
+        //NOTE -- not sure if i need this
+        //To be able to recieve json responses
+        _httpClient.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json")
+        );
         
-        _apiKey = System.Environment.GetEnvironmentVariable("HereKey")!;
+        _apiKey = Environment.GetEnvironmentVariable("HereKey")!;
+    }
+
+    public async Task GetPlacesAsync(decimal lat, decimal lng)
+    {
+        var places = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
+            $"?at={lat},{lng}&apiKey={_apiKey}"
+        );
+        
+        // foreach (PlaceDeserialized place in places.Items)
+        // {
+        //     System.Console.WriteLine(place.Title);
+        // }
+        
     }
 
 }
