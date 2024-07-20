@@ -1,4 +1,5 @@
 using Things2Do.Api.Dtos;
+using Things2Do.Api.Serivces;
 
 namespace Things2Do.Api.Endpoints;
 
@@ -16,8 +17,8 @@ public static class SearchEndpoints
         var group = app.MapGroup("search").WithParameterValidation(); 
 
         //Location + filter information transmitted in body
-        group.MapPut("/", (SearchPlaceDto searchQuery) => {
-
+        group.MapPut("/", (SearchPlaceDto searchQuery, HereService hereApi) => {
+            
         });
 
         return group!;

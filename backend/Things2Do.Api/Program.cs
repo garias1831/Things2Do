@@ -3,8 +3,11 @@ using Things2Do.Api.Serivces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddHttpClient<HereService>();
+builder.Configuration.AddEnvironmentVariables();
 
+
+
+builder.Services.AddHttpClient<HereService>();
 
 var app = builder.Build();
 
