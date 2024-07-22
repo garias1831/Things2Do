@@ -35,7 +35,9 @@ public class HereService
         
         // foreach (PlaceDeserialized place in places.Items)
         // {
-        //     System.Console.WriteLine(place.Title);
+        //     System.Console.WriteLine($"{place.Title} at: {place.Position.Lat}, {place.Position.Lng}");
+        //     // System.Console.WriteLine(place.Distance.ToString());
+        //     //System.Console.WriteLine("\n");
         // }
         
     }

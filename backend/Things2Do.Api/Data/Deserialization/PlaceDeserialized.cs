@@ -8,6 +8,12 @@ namespace Things2Do.Api.Data.Deserialization;
 public record class PlaceDeserialized
 (
     [property: JsonPropertyName("title")]
-    string Title
-    //Will add more
+    string Title,
+
+    [property: JsonPropertyName("distance")]
+    double Distance,
+
+    [property: JsonPropertyName("position")]
+    PlacePositionDeserialized Position
+
 );
