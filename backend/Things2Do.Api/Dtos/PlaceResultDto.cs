@@ -2,14 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Things2Do.Api.Dtos;
 
-//Dto that represents a request to find places around a specific locatoin
-public record class SearchPlaceDto
+//Information abt a place to be displayed to the client
+public record class PlaceResult 
 (
     [Required] [Range(-90, 90)]
     decimal Lat,
-    
+
     [Required] [Range(-180, 180)]
     decimal Lng
 
-    //TODO -- Add filters, etc here, subdir for filter dtos
+    //Todo -- add contact info, images, reviews, etc
 );

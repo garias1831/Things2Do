@@ -8,5 +8,5 @@ namespace Things2Do.Api.Data.Deserialization;
 public record class PlaceCollectionDeserialized
 (
     [property: JsonPropertyName("items")]
-    ICollection<PlaceDeserialized> Items //Could b a list tbh
+    List<PlaceDeserialized> Items  //Could b more generic but its fine
 );

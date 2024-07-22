@@ -1,3 +1,4 @@
+using Things2Do.Api.Data.Deserialization;
 using Things2Do.Api.Dtos;
 using Things2Do.Api.Services;
 
@@ -19,14 +20,19 @@ public static class SearchEndpoints
         //Location + filter information transmitted in body
         group.MapPut("/", async (SearchPlaceDto searchQuery, HereService hereApi) => {
             
+            //May export this into seperate method but this works
             try //This stuff not done yet
             {
-                await hereApi.GetPlacesAsync(searchQuery.Lat, searchQuery.Lng);
+                List<PlaceDeserialized> places = 
+                    await hereApi.GetPlacesAsync(searchQuery.Lat, searchQuery.Lng);
+
+                return Results.Ok(places);
+
             }
             catch (HttpRequestException e)
             {
                 //NOTE -- may want to inform the client somehow?
-                Console.WriteLine($"There was an error with the HTTP Request: {e.Message}");
+                Console.Error.WriteLine($"There was an error with the HTTP Request: {e.Message}");
                 throw;
             }
 

@@ -27,12 +27,20 @@ public class HereService
         _apiKey = Environment.GetEnvironmentVariable("HereKey")!;
     }
 
-    public async Task GetPlacesAsync(decimal lat, decimal lng)
+    public async Task<List<PlaceDeserialized>> GetPlacesAsync(decimal lat, decimal lng)
     {
-        var places = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
+        var placeCollection = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
             $"?at={lat},{lng}&apiKey={_apiKey}"
         );
         
+        if (placeCollection is null)
+        {
+            return new List<PlaceDeserialized>();
+        }
+    
+        return placeCollection.Items;
+
+        //Testin
         // foreach (PlaceDeserialized place in places.Items)
         // {
         //     System.Console.WriteLine($"{place.Title} at: {place.Position.Lat}, {place.Position.Lng}");
