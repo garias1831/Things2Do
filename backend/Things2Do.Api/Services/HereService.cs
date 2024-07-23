@@ -37,16 +37,15 @@ public class HereService
         {
             return new List<PlaceDeserialized>();
         }
-    
-        return placeCollection.Items;
 
-        //Testin
-        // foreach (PlaceDeserialized place in places.Items)
+        // foreach (PlaceDeserialized place in placeCollection.Items)
         // {
         //     System.Console.WriteLine($"{place.Title} at: {place.Position.Lat}, {place.Position.Lng}");
         //     // System.Console.WriteLine(place.Distance.ToString());
         //     //System.Console.WriteLine("\n");
         // }
+
+        return placeCollection.Items;       
         
     }
 

@@ -8,7 +8,8 @@ function userSetup() {
         lng: -90.05194020924256,
         //The following initialized by mapsetup fn
         locationMarker: undefined, //Draggable location pin
-        map: undefined //NOTE - might b a better way here 
+        activePlaceMarkers: [], //Leaflet marker objects for place rsults
+        map: undefined //NOTE - might b a better way here
     };
     return user;
 }
@@ -79,6 +80,46 @@ function getUserLocation() {
     navigator.geolocation.getCurrentPosition(success, fail);
 }
 
+function setPlaceMarkers(places) {
+    console.log(places);
+    //TODO -- would b nice to make a custom popup displaying the title of the place w/ css
+    //Kinda like how google maps does
+    places.forEach(place => {
+        const pos = place.position;
+        const marker = L.marker([pos.lat, pos.lng], {
+            title: place.title
+        });
+
+        user.activePlaceMarkers.push(marker);
+        marker.addTo(user.map);
+
+    });
+    
+}
+
+async function search() {
+    
+    try { //TODO -- replace w/ actual backend location
+        const response = await fetch("http://localhost:5057/search", {
+            method: "POST",
+            headers: {
+                "Accept" : "application/json",
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                lat: user.lat, 
+                lng: user.lng
+            })
+        });
+
+        const placeResults = await response.json();
+        setPlaceMarkers(placeResults);
+
+    } catch (error) {
+        console.warn(error.message);
+        //Need to warn the client
+    }
+}
 
 //Run setup functions + bind callbacks
 
@@ -86,6 +127,8 @@ function getUserLocation() {
 user.map = mapSetup();
 
 const geolocateBtn = document.getElementById('geolocate');
+const searchBtn = document.getElementById('search');
 
 geolocateBtn.addEventListener('click', () => getUserLocation());
+searchBtn.addEventListener('click',  () => search());
 

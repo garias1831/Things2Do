@@ -16,9 +16,10 @@ public static class SearchEndpoints
     {
         //WithParameterValidation() from MinimalApis.Extensions package
         var group = app.MapGroup("search").WithParameterValidation(); 
-
+        
         //Location + filter information transmitted in body
-        group.MapPut("/", async (SearchPlaceDto searchQuery, HereService hereApi) => {
+        // POST /search
+        group.MapPost("/", async (SearchPlaceDto searchQuery, HereService hereApi) => {
             
             //May export this into seperate method but this works
             try //This stuff not done yet
@@ -33,7 +34,7 @@ public static class SearchEndpoints
             {
                 //NOTE -- may want to inform the client somehow?
                 Console.Error.WriteLine($"There was an error with the HTTP Request: {e.Message}");
-                throw;
+                return Results.BadRequest(); //Prob want to return something else
             }
 
         });
