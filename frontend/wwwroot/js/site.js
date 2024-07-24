@@ -41,6 +41,10 @@ function mapSetup() {
         draggable: true, 
         autoPan: true}).addTo(map);
 
+    homemarker.addEventListener('move', (e) => {
+        user.lat = e.latlng.lat;
+        user.lng = e.latlng.lng;
+    });
     user.locationMarker = homemarker;
     return map;
 }
@@ -80,10 +84,18 @@ function getUserLocation() {
     navigator.geolocation.getCurrentPosition(success, fail);
 }
 
+function clearExistingPlaceMarkers() {
+    const markers = user.activePlaceMarkers;
+    markers.forEach(marker => {
+        user.map.removeLayer(marker);
+    });
+    user.activePlaceMarkers = [];
+}
+
 function setPlaceMarkers(places) {
-    console.log(places);
     //TODO -- would b nice to make a custom popup displaying the title of the place w/ css
     //Kinda like how google maps does
+    //Add markers in the results to the map
     places.forEach(place => {
         const pos = place.position;
         const marker = L.marker([pos.lat, pos.lng], {
@@ -94,7 +106,6 @@ function setPlaceMarkers(places) {
         marker.addTo(user.map);
 
     });
-    
 }
 
 async function search() {
@@ -113,6 +124,7 @@ async function search() {
         });
 
         const placeResults = await response.json();
+        clearExistingPlaceMarkers();
         setPlaceMarkers(placeResults);
 
     } catch (error) {

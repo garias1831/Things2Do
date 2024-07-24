@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vHdq6DF8O+g=",
+  "dgSpecHash": "BR7jMWKS9lKAGMeGoo8bNWozewM4e9PPgeAhlddeG7DQwVRYj9BqkcnUFn3r4ajApra8uesk2sHAJFp1zcFFrA==",
   "success": true,
-  "projectFilePath": "C:\\code\\csharp\\aspdotnet\\Things2Do\\backend\\Things2Do.Api\\Things2Do.Api.csproj",
+  "projectFilePath": "E:\\code\\csharp\\aspdotnet\\Things2Do\\backend\\Things2Do.Api\\Things2Do.Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Testo\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
-    "C:\\Users\\Testo\\.nuget\\packages\\minimalapis.extensions\\0.11.0\\minimalapis.extensions.0.11.0.nupkg.sha512",
-    "C:\\Users\\Testo\\.nuget\\packages\\minivalidation\\0.8.0\\minivalidation.0.8.0.nupkg.sha512"
+    "C:\\Users\\spark\\.nuget\\packages\\microsoft.openapi\\1.4.3\\microsoft.openapi.1.4.3.nupkg.sha512",
+    "C:\\Users\\spark\\.nuget\\packages\\minimalapis.extensions\\0.11.0\\minimalapis.extensions.0.11.0.nupkg.sha512",
+    "C:\\Users\\spark\\.nuget\\packages\\minivalidation\\0.8.0\\minivalidation.0.8.0.nupkg.sha512"
   ],
   "logs": []
 }
