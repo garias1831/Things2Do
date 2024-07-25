@@ -92,17 +92,36 @@ function clearExistingPlaceMarkers() {
     user.activePlaceMarkers = [];
 }
 
+//Show images, contacts, etc when a map marker is pressed
+function showPlaceInfo(place) {
+    const placeInfo = document.getElementById('place-info');
+    if (placeInfo.style.display === 'none') {
+        placeInfo.classList.add('slidein-left'); //only animate if hidden
+    }
+    placeInfo.style.display = 'block';
+}
+
+function hidePlaceInfo() {
+    const placeInfo = document.getElementById('place-info');
+    placeInfo.classList.add('slideout-left');  
+    //Note the event handlers at the end of the script
+}
+
 function setPlaceMarkers(places) {
     //TODO -- would b nice to make a custom popup displaying the title of the place w/ css
     //Kinda like how google maps does
     //Add markers in the results to the map
+    //Could also add a small animation to the markers when they spawn in
     places.forEach(place => {
         const pos = place.position;
         const marker = L.marker([pos.lat, pos.lng], {
             title: place.title
         });
-
+        
+        marker.addEventListener('click', () => showPlaceInfo(place))
+        
         user.activePlaceMarkers.push(marker);
+        marker.bindTooltip(`${place.title}`); //Only works on hover but better than nothin
         marker.addTo(user.map);
 
     });
@@ -141,6 +160,25 @@ user.map = mapSetup();
 const geolocateBtn = document.getElementById('geolocate');
 const searchBtn = document.getElementById('search');
 
+//This could b in a different spot
+const placeInfo = document.getElementById('place-info');
+
+//Remove animation classes at the end of an animation
+placeInfo.addEventListener('animationend', () => {
+    console.log('animation ending');
+    if (placeInfo.classList.contains('slideout-left')) {
+        //Needs to occur on animaton end so it dissapears after it's out of sight
+        placeInfo.style.display = 'none';
+    }
+
+    //Safe bc methods do nothing if class not present
+    placeInfo.classList.remove('slidein-left');
+    placeInfo.classList.remove('slideout-left');
+});
+
+const closePlaceInfoBtn = document.getElementById('close-place-info');
+
 geolocateBtn.addEventListener('click', () => getUserLocation());
 searchBtn.addEventListener('click',  () => search());
 
+closePlaceInfoBtn.addEventListener('click', () => hidePlaceInfo());
