@@ -35,7 +35,7 @@ function mapSetup() {
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
              }).addTo(map);
 
-    //NOTE -- will have to put this somewhere accessible (to get things like location )
+    //Set up the search location marker
     const homemarker = L.marker([initX, initY], {
         alt: 'search location',
         draggable: true, 
@@ -45,6 +45,7 @@ function mapSetup() {
         user.lat = e.latlng.lat;
         user.lng = e.latlng.lng;
     });
+
     user.locationMarker = homemarker;
     return map;
 }
@@ -104,7 +105,7 @@ function showPlaceInfo(place) {
 function hidePlaceInfo() {
     const placeInfo = document.getElementById('place-info');
     placeInfo.classList.add('slideout-left');  
-    //Note the event handlers at the end of the script
+    //Note the handlers at the end of the script
 }
 
 function setPlaceMarkers(places) {
@@ -165,7 +166,6 @@ const placeInfo = document.getElementById('place-info');
 
 //Remove animation classes at the end of an animation
 placeInfo.addEventListener('animationend', () => {
-    console.log('animation ending');
     if (placeInfo.classList.contains('slideout-left')) {
         //Needs to occur on animaton end so it dissapears after it's out of sight
         placeInfo.style.display = 'none';
@@ -175,6 +175,10 @@ placeInfo.addEventListener('animationend', () => {
     placeInfo.classList.remove('slidein-left');
     placeInfo.classList.remove('slideout-left');
 });
+
+//So user can't interact with map through the div
+L.DomEvent.disableClickPropagation(placeInfo);
+L.DomEvent.disableScrollPropagation(placeInfo);
 
 const closePlaceInfoBtn = document.getElementById('close-place-info');
 

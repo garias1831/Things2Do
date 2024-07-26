@@ -194,6 +194,11 @@ small {font-size: 0.833rem; /* 13.28px */}
   background-color: var(--secondary);
 }
 
+/*Defaults to drag bc place-info sits ontop of leaflet map*/
+#place-info:hover {
+  cursor: auto;
+}
+
 .slidein-left {
   /*This looks fine, but could def. be better*/
   animation: 0.15s linear slidein-left;
