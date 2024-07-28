@@ -33,8 +33,8 @@ public static class SearchEndpoints
             catch (HttpRequestException e)
             {
                 //NOTE -- may want to inform the client somehow?
-                Console.Error.WriteLine($"There was an error with the HTTP Request: {e.Message}");
-                return Results.BadRequest(); //Prob want to return something else
+                Console.Error.WriteLine($"HTTP error: {e.Message}");
+                return Results.BadRequest(); //FIXME Prob want to return something else
             }
 
         });

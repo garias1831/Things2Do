@@ -128,6 +128,7 @@ function setPlaceMarkers(places) {
     });
 }
 
+//TODO -- would be nice to inform the user if theres no search results near a given location
 async function search() {
     
     try { //TODO -- replace w/ actual backend location
@@ -176,7 +177,7 @@ placeInfo.addEventListener('animationend', () => {
     placeInfo.classList.remove('slideout-left');
 });
 
-//So user can't interact with map through the div
+//So user can't interact with map through the place info sidebar
 L.DomEvent.disableClickPropagation(placeInfo);
 L.DomEvent.disableScrollPropagation(placeInfo);
 
