@@ -114,8 +114,7 @@ function setPlaceMarkers(places) {
     //Add markers in the results to the map
     //Could also add a small animation to the markers when they spawn in
     places.forEach(place => {
-        const pos = place.position;
-        const marker = L.marker([pos.lat, pos.lng], {
+        const marker = L.marker([place.lat, place.lng], {
             title: place.title
         });
         

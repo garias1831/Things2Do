@@ -24,10 +24,24 @@ public static class SearchEndpoints
             //May export this into seperate method but this works
             try //This stuff not done yet
             {
-                List<PlaceDeserialized> places = 
+                List<PlaceDeserialized> placesDeserialized = 
                     await hereApi.GetPlacesAsync(searchQuery.Lat, searchQuery.Lng);
 
+                
+
+                //Convert to a result DTO
+                var places = placesDeserialized.Select(pl =>
+                {
+                    return new PlaceResultDto(
+                        Title: pl.Title,
+                        Lat: pl.Position.Lat,
+                        Lng: pl.Position.Lng
+                    );
+                });
                 return Results.Ok(places);
+
+                //FOR TESTING -- to see result of requests
+                //return Results.Ok(placesDeserialized);
 
             }
             catch (HttpRequestException e)
