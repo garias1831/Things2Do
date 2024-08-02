@@ -97,13 +97,57 @@
                         <div id="map">
                             <!--sus but this works-->
                             <div id="place-info">
-                                <button id="close-place-info">Close</button>
+                                <div id="close-row-wrapper">
+                                    <button id="close-place-info">
+                                        <img src="images/icons/placeinfo/x.png" alt="X">
+                                    </button>
+                                </div>
+                                <!--TODO Place image and associated things go here-->
+                                <p id="place-title"></p>
+                
+                                <div id="place-info-content">
+                                    <div id="place-address-box">
+                                        <img class="place-info-img" src="images/icons/placeinfo/pingreen.png" alt="address">
+                                        <p id="place-address" class="place-info-text"></p>
+                                    </div>
+                                    <div id="place-info-contacts" class="place-info-box place-info-nullable" data-name="contacts">
+                                        <div class="place-info-heading">
+                                            <p class=>Contacts</p>
+                                        </div>
+                                        <div id="place-info-phone" class="place-info-box">
+                                            <img class="place-info-img"src="images/icons/placeinfo/phone.png" alt="phone">
+                                            <div id="phone-dropdown-head" class="contact-dropdown-head">
+    
+                                                <div id="phone-dropdown" class="contact-dropdown"></div>
+                                            </div>
+                                            <button id="phone-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
+
+                                        </div>
+                                        <div id="place-info-web" class="place-info-box">
+                                            <img class="place-info-img"src="images/icons/placeinfo/web.png" alt="web">
+                                            <div id="web-dropdown-head" class="contact-dropdown-head">
+                                                <div id="web-dropdown" class="contact-dropdown"></div>
+                                            </div>
+                                            <button id="web-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
+
+                                        </div>
+                                        <div id="place-info-email" class="place-info-box">
+                                            <img class="place-info-img"src="images/icons/placeinfo/email.png" alt="email">
+                                            <div id="email-dropdown-head" class="contact-dropdown-head">
+                                                <div id="email-dropdown" class="contact-dropdown"></div>
+                                            </div>
+                                            <button id="email-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
                 </main>
             </section>
         </div>
+        
         <footer></footer>
     </body>
 </html>

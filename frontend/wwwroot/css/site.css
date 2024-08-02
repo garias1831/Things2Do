@@ -98,7 +98,6 @@ small {font-size: 0.833rem; /* 13.28px */}
 
 .info-card-light {
   background-color: var(--secondaryshade1);
-
 }
 
 .info-card-light-wrapper {
@@ -113,8 +112,6 @@ small {font-size: 0.833rem; /* 13.28px */}
   margin: 0 0 2rem 0;
   width: fit-content
 }
-
-
 
 .fill {
   flex-grow: 1;
@@ -177,6 +174,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 
 .sidebar-btn:hover {
   background-color: var(--accentshade1);
+  cursor: pointer;
 }
 
 #map {
@@ -190,8 +188,12 @@ small {font-size: 0.833rem; /* 13.28px */}
   position: absolute;
   height: var(--mapheight);
   width: 20rem;
+  padding: 0.5rem;
   z-index: 1000; /*So it sits on top of the map*/
   background-color: var(--secondary);
+
+  font-family: 'Noto Serif';
+  color: var(--background);
 }
 
 /*Defaults to drag bc place-info sits ontop of leaflet map*/
@@ -209,6 +211,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 }
 
 /*Animation for side panels sliding in / out*/
+/*FIXME Jumps a lil fast on first press of a pin*/
 @keyframes slidein-left {
   0% {
     translate: -100% 0;
@@ -226,6 +229,130 @@ small {font-size: 0.833rem; /* 13.28px */}
     translate: -100% 0;
   }
 }
+
+#close-place-info {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background: var(--secondary);
+  border: 0px;
+  border-radius: 50%;
+}
+
+#close-place-info:hover {
+  background: var(--secondaryshade1);
+}
+
+#close-row-wrapper {
+  display: flex;
+  justify-content: right;
+}
+
+
+#place-title {
+  font-family: 'Noto Serif';
+  font-size: 1.3em;
+  text-align: center;
+  color: var(--background);
+}
+
+.place-info-text {
+  font-family: 'Noto Serif';
+  color: var(--background);
+}
+
+#place-address-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.place-info-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*4 little img icon*/
+.place-info-img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.place-info-heading {
+  font-family: 'Noto Serif';
+  color: var(--background);
+  font-weight: bold;
+  font-size: 1rem;
+
+  /*For the highlight effect*/
+  background: linear-gradient(
+    180deg,
+    var(--secondary) 40%,
+    rgba(60, 97, 51, 60%) 40% /*Standard accent green*/
+  );
+
+  width: fit-content;
+  padding: 0 5px 0 0;
+}
+
+/*Dropdown menu in the contacts*/
+.contact-dropdown-head {
+  position: relative;
+}
+
+.contact-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%; /*push down by height of container (first entry)*/
+}
+
+/*Pushes the btn left (left margin consumes as much space as possible)*/
+.contact-dropdown-toggle{
+  background-color: var(--secondary);
+  font-family: inherit;
+  color: inherit;
+
+  border-radius: 15px;
+  border: 0;
+}
+
+.contact-dropdown-toggle:hover {
+  background-color: var(--secondaryshade1);
+}
+
+
+.contact-dropdown-item {
+  background: var(--secondary);
+  padding: 0.2rem;
+}
+
+/*Honestly would rather have it push down, but this works fine*/
+.contact-dropdown > .contact-dropdown-item {
+  border: 1px var(--accent) solid;
+  border-radius: 5px; 
+}
+
+
+.contact-dropdown-item, .contact-dropdown-item a{
+  font-family: inherit;
+  color: inherit;  
+}
+
+
+.show { /*This sucks*/
+  display: block;
+}
+
+
+
+
 
 footer {
   background-color: var(--secondary);
