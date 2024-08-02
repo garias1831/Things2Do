@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace Things2Do.Api.Dtos;
 
 //Information abt a place to be displayed to the client
@@ -14,6 +12,8 @@ public record class PlaceResultDto
     string Address,
 
     ContactResultDto? Contacts
+
+    //OpeningHoursResultDto? OpeningHours
 
     //TODO Need 2 add opening hours + image link 
 

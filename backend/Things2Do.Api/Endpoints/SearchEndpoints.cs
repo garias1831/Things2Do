@@ -63,6 +63,7 @@ public static class SearchEndpoints
                             Contacts: contacts
                         );
                     });
+                
                 return Results.Ok(places);
                 
                 //FOR TESTING -- to see result of requests
