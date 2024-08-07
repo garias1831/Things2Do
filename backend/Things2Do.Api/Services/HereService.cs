@@ -29,8 +29,11 @@ public class HereService
 
     public async Task<List<PlaceDeserialized>> GetPlacesAsync(decimal lat, decimal lng)
     {
+        //NOTE -- the lang=en param here returns place names, address, etc in ENGLISH
+        //For future may want to find lang of page and shove it in here + render days of week in local language / culture
+        //Or render in client lang w/ subtitle of native lang
         var placeCollection = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
-            $"?at={lat},{lng}&apiKey={_apiKey}"
+            $"?at={lat},{lng}&lang=en&apiKey={_apiKey}"
         );
         
         if (placeCollection is null)
@@ -46,7 +49,6 @@ public class HereService
         // }
 
         return placeCollection.Items;       
-        
     }
 
 }

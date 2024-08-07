@@ -1,3 +1,5 @@
+using Things2Do.Api.Dtos.OpeningHours;
+
 namespace Things2Do.Api.Dtos;
 
 //Information abt a place to be displayed to the client
@@ -11,9 +13,9 @@ public record class PlaceResultDto
 
     string Address,
 
-    ContactResultDto? Contacts
+    ContactResultDto? Contacts,
 
-    //OpeningHoursResultDto? OpeningHours
+    OpeningHoursResultDto? OpeningHours
 
     //TODO Need 2 add opening hours + image link 
 

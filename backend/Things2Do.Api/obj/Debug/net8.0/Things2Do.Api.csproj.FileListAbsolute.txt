@@ -62,3 +62,14 @@ C:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\obj\Debug\net8.0\refint
 C:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\obj\Debug\net8.0\Things2Do.Api.pdb
 C:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\obj\Debug\net8.0\Things2Do.Api.genruntimeconfig.cache
 C:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\obj\Debug\net8.0\ref\Things2Do.Api.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Sinks.Console.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.AspNetCore.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Extensions.Hosting.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Extensions.Logging.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Formatting.Compact.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Settings.Configuration.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Sinks.Debug.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\Serilog.Sinks.File.dll
+E:\code\csharp\aspdotnet\Things2Do\backend\Things2Do.Api\bin\Debug\net8.0\System.Text.Json.dll
