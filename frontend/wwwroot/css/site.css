@@ -53,8 +53,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 
 /*Header / website title*/
 #title > h1 {
-  font-size: 3rem;
- 
+  font-size: 4rem;
 }
 
 #subtitle > p {
@@ -186,14 +185,16 @@ small {font-size: 0.833rem; /* 13.28px */}
 #place-info {
   display: none;
   position: absolute;
-  height: var(--mapheight);
-  width: 20rem;
+  height: 100%;
+  width: clamp(15rem, 25rem, 45%); /*FIXME this should DEFINITELY be clamped*/
   padding: 0.5rem;
   z-index: 1000; /*So it sits on top of the map*/
   background-color: var(--secondary);
 
   font-family: 'Noto Serif';
   color: var(--background);
+
+  overflow-y: auto; /*Scroll if the info is too much*/
 }
 
 /*Defaults to drag bc place-info sits ontop of leaflet map*/
@@ -255,13 +256,14 @@ small {font-size: 0.833rem; /* 13.28px */}
 
 #place-title {
   font-family: 'Noto Serif';
-  font-size: 1.3em;
+  font-size: 1.5rem;
   text-align: center;
   color: var(--background);
 }
 
 .place-info-text {
   font-family: 'Noto Serif';
+  font-size: 1rem;
   color: var(--background);
 }
 
@@ -269,6 +271,7 @@ small {font-size: 0.833rem; /* 13.28px */}
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 .place-info-box {
@@ -278,7 +281,7 @@ small {font-size: 0.833rem; /* 13.28px */}
   justify-content: space-between;
 }
 
-/*4 little img icon*/
+/*4 little img icons, should prob rename*/
 .place-info-img {
   width: 1.75rem;
   height: 1.75rem;
@@ -288,7 +291,7 @@ small {font-size: 0.833rem; /* 13.28px */}
   font-family: 'Noto Serif';
   color: var(--background);
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.25rem;
 
   /*For the highlight effect*/
   background: linear-gradient(
@@ -331,6 +334,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 .contact-dropdown-item {
   background: var(--secondary);
   padding: 0.2rem;
+  
 }
 
 /*Honestly would rather have it push down, but this works fine*/
@@ -340,7 +344,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 }
 
 
-.contact-dropdown-item, .contact-dropdown-item a{
+.contact-dropdown-item a{
   font-family: inherit;
   color: inherit;  
 }
@@ -348,6 +352,36 @@ small {font-size: 0.833rem; /* 13.28px */}
 
 .show { /*This sucks*/
   display: block;
+}
+
+/*Opening hours styles*/
+
+.info-hours-entry { /*FIXME -- want them closer, ideally, but this works*/
+  margin: 0 0 1rem 0 ;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-hours-entry:last-child {
+  margin: 0px;
+}
+
+
+/*Ever so slightly misaligned, but its whatever*/
+.info-hours-entry p {
+  margin: 0px;
+  flex: 1;
+}
+
+.info-hours-entry p:first-child{ /*The d8 (mon, tues, wed, etc)*/
+  font-size: 1.25rem;
+  margin-right: 2rem;
+}
+
+.info-hours-entry p:last-child {
+  margin: 0px;
 }
 
 

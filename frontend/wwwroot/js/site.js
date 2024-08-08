@@ -103,6 +103,74 @@ function addSlideinAnimation() {
     placeInfo.style.display = 'block'; 
 }
 
+//From gpt lol
+function stringToTime(timeOnly) {
+
+    // Get the current date
+    const currentDate = new Date();
+    
+    // Extract the parts of the timeOnly string
+    const [hours, minutes, seconds] = timeOnly.split(':').map(Number);
+    
+    // Create a Date object with the current date and extracted time
+    const combinedDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        hours,
+        minutes,
+        seconds
+    );
+    
+    return combinedDate;
+}
+
+function renderHoursInfo(openingHours) {
+    if (openingHours === null) {
+        return;
+    }
+
+    const hours = Object.values(openingHours).slice(1); //remove isOpen prop
+    
+    //get + clear the hourboxes before rendering
+    const hourBoxes = document.querySelectorAll(
+        '.info-hours-entry p:last-child'
+    );
+    Array.from(hourBoxes).map(e => e.innerText = '');
+
+    //hours.length  === hourBoxes.length === 7
+    for(let i = 0; i < 7; i++) {
+        const timeRange = hours[i];
+        const dayBox = hourBoxes[i];
+
+        if (timeRange === null) {
+            dayBox.innerText = 'Closed';
+            continue;
+        }
+        //console.log(timeRange);
+        const start = stringToTime(timeRange.start);
+        const end = stringToTime(timeRange.end);
+        
+        if (start === end) {
+            dayBox.innerText = 'Open 24 hours';
+            continue;
+        }
+
+        //Make into HH:mm AM/PM strin
+        
+        //TODO -- for now this is en-US, in the future want to put to dynamically adapt to local fomat
+        //ALso not as efficient apparently
+        const options = {
+            timeStyle : "short" //Display in hh:,,
+        };
+        const startStr = start.toLocaleTimeString("en-US", options); //not as eff see docs
+        const endStr = end.toLocaleTimeString("en-US", options);
+    
+        dayBox.innerText = `${startStr} - ${endStr}`;
+
+    }
+}
+
 function renderContactDropdown(contactType, contactArr) {
     //REQ: contactArr length >= 1
 
@@ -123,10 +191,10 @@ function renderContactDropdown(contactType, contactArr) {
         dropdownItem.classList.add('contact-dropdown-item');
 
         if (contactType === 'web') {
-            dropdownItem.innerHTML = `<a href="${val}" target="_blank">${val}</a>`;
+            dropdownItem.innerHTML = `<a href="${val}" target="_blank"><p class="place-info-text">${val}</p></a>`;
         }
         else {
-            dropdownItem.innerHTML = `<p>${val}</p>`;
+            dropdownItem.innerHTML = `<p class="place-info-text">${val}</p>`;
         }
        
         if (i === 0) {
@@ -214,7 +282,7 @@ function showPlaceInfo(place) {
     });
 
     renderContactInfo(place.contacts);
-    //TODO -- render hours of operation section
+    renderHoursInfo(place.openingHours);
 }
 
 function hidePlaceInfo() {

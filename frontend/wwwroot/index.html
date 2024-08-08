@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -104,16 +104,49 @@
                                 </div>
                                 <!--TODO Place image and associated things go here-->
                                 <p id="place-title"></p>
-                
+                                <div id="place-address-box">
+                                    <img class="place-info-img" src="images/icons/placeinfo/pingreen.png" alt="address">
+                                    <p id="place-address" class="place-info-text"></p>
+                                </div>
                                 <div id="place-info-content">
-                                    <div id="place-address-box">
-                                        <img class="place-info-img" src="images/icons/placeinfo/pingreen.png" alt="address">
-                                        <p id="place-address" class="place-info-text"></p>
+                                    
+                                    <div id="place-info-hours" class="place-info-nullable" data-name="openingHours">
+                                        <p class="place-info-heading">Opening Hours</p>
+                                        <div>
+                                            <div class="info-hours-entry">
+                                                <p>Mon:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Tues:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Wed:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Thurs:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Fri:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Sat:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                            <div class="info-hours-entry">
+                                                <p>Sun:</p>
+                                                <p class="place-info-text"></p>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     <div id="place-info-contacts" class="place-info-box place-info-nullable" data-name="contacts">
-                                        <div class="place-info-heading">
-                                            <p class=>Contacts</p>
-                                        </div>
+                                        
+                                        <p class="place-info-heading">Contacts</p>
                                         <div id="place-info-phone" class="place-info-box">
                                             <img class="place-info-img"src="images/icons/placeinfo/phone.png" alt="phone">
                                             <div id="phone-dropdown-head" class="contact-dropdown-head">
