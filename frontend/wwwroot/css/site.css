@@ -302,7 +302,11 @@ small {font-size: 0.833rem; /* 13.28px */}
 
   width: fit-content;
   padding: 0 5px 0 0;
+  margin-bottom: 0;
 }
+
+
+
 
 /*Dropdown menu in the contacts*/
 .contact-dropdown-head {
@@ -330,11 +334,9 @@ small {font-size: 0.833rem; /* 13.28px */}
   background-color: var(--secondaryshade1);
 }
 
-
 .contact-dropdown-item {
   background: var(--secondary);
   padding: 0.2rem;
-  
 }
 
 /*Honestly would rather have it push down, but this works fine*/
@@ -343,12 +345,10 @@ small {font-size: 0.833rem; /* 13.28px */}
   border-radius: 5px; 
 }
 
-
 .contact-dropdown-item a{
   font-family: inherit;
   color: inherit;  
 }
-
 
 .show { /*This sucks*/
   display: block;
@@ -368,7 +368,6 @@ small {font-size: 0.833rem; /* 13.28px */}
   margin: 0px;
 }
 
-
 /*Ever so slightly misaligned, but its whatever*/
 .info-hours-entry p {
   margin: 0px;
@@ -384,8 +383,21 @@ small {font-size: 0.833rem; /* 13.28px */}
   margin: 0px;
 }
 
+/*Style the filter left hand thingy*/
+#filters { /*Same as styles for place info, but takes priority over it*/
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: clamp(15rem, 25rem, 45%); /*FIXME this should DEFINITELY be clamped*/
+  padding: 0.5rem;
+  z-index: 1001; /*So it sits on top of the map*/
+  background-color: var(--secondary);
 
+  font-family: 'Noto Serif';
+  color: var(--background);
 
+  overflow-y: auto; /*Scroll if the info is too much*/
+}
 
 
 footer {

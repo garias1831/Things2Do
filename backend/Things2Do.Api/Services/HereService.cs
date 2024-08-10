@@ -32,6 +32,13 @@ public class HereService
         //NOTE -- the lang=en param here returns place names, address, etc in ENGLISH
         //For future may want to find lang of page and shove it in here + render days of week in local language / culture
         //Or render in client lang w/ subtitle of native lang
+        
+        //NOTE - SAMPLE CATEGORY GROUPING
+        //Food and drink: 100-1000-0000 (generic),300-3000-0065, 300-3000-0351, 300-3000-0351  (brevwey distillery winery)  
+        //Enteretainment just the norm
+        //Museums: 300-3100-0000, 300-3000-0024 (generic, artgallery)
+        //Landmarks and monuments: all cats except winery and breqery
+
         var placeCollection = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
             $"?at={lat},{lng}&lang=en&apiKey={_apiKey}"
         );

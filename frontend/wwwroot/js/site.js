@@ -85,22 +85,28 @@ function getUserLocation() {
     navigator.geolocation.getCurrentPosition(success, fail);
 }
 
-function clearExistingPlaceMarkers() {
-    const markers = user.activePlaceMarkers;
-    markers.forEach(marker => {
-        user.map.removeLayer(marker);
-    });
-    user.activePlaceMarkers = [];
+//FIXME -- anim not playing on first click,
+//These 2 fns oggle the slidein / slideuot animation
+function animateIfHidden(el) {
+    //Display the sliding in animation
+    if (el.style.display === 'none') {
+        el.classList.add('slidein-left'); //only animate if hidden
+    }
+    el.style.display = 'block'; 
 }
 
-//FIXME -- anim not playing on first click,
-function addSlideinAnimation() {
-    const placeInfo = document.getElementById('place-info');
-    //Display the sliding in animation
-    if (placeInfo.style.display === 'none') {
-        placeInfo.classList.add('slidein-left'); //only animate if hidden
-    }
-    placeInfo.style.display = 'block'; 
+//Remove slidein classes @ the end of the animation
+function removeSlideinClassesAtEnd(el) {
+    el.addEventListener('animationend', () => {
+        if (el.classList.contains('slideout-left')) {
+            //Needs to occur on animaton end so it dissapears after it's out of sight
+            el.style.display = 'none';
+        }
+    
+        //Safe bc methods do nothing if class not present
+        el.classList.remove('slidein-left');
+        el.classList.remove('slideout-left');
+    });
 }
 
 //From gpt lol
@@ -161,7 +167,7 @@ function renderHoursInfo(openingHours) {
         //TODO -- for now this is en-US, in the future want to put to dynamically adapt to local fomat
         //ALso not as efficient apparently
         const options = {
-            timeStyle : "short" //Display in hh:,,
+            timeStyle : "short" //Display in hh:mm time format
         };
         const startStr = start.toLocaleTimeString("en-US", options); //not as eff see docs
         const endStr = end.toLocaleTimeString("en-US", options);
@@ -216,25 +222,15 @@ function renderContactDropdown(contactType, contactArr) {
     }
     //Show / hide the elems on button press
     const toggleDropdown = () => {
-        
         const dropdownLocal = dropdown;
-        //const items = document.querySelectorAll(`#${contactType}-dropdown > .contact-dropdown-item`);
-        //console.log("contact arr:", contactArr);
         dropdownLocal.classList.toggle('show');
-        //console.log(dropdownLocal.children);
-        // for (let i = 0; i < items.length; i++) {
-        //     //First item should always show
-        //     if(i !== 0){
-        //         items[i].classList.toggle('show');
-        //     }
-            
-        // }
     }
 
     toggleBtn.onclick = () => toggleDropdown(); //want to ovveride each time
 
 }
 
+//The dropdown menu rendered when the 'show more' btn of a contact type is pressed
 function renderContactInfo(contacts) {
     if (contacts === null) {
         return;
@@ -263,7 +259,7 @@ function showPlaceInfo(place) {
     const titleBox = document.getElementById('place-title');
     const addressBox = document.getElementById('place-address');
     
-    addSlideinAnimation();
+    animateIfHidden(document.getElementById('place-info'));
     //Render attributes 
     titleBox.textContent = place.title;
     addressBox.textContent = place.address;
@@ -291,6 +287,14 @@ function hidePlaceInfo() {
     //Note the handlers at the end of the script
 }
 
+function clearExistingPlaceMarkers() {
+    const markers = user.activePlaceMarkers;
+    markers.forEach(marker => {
+        user.map.removeLayer(marker);
+    });
+    user.activePlaceMarkers = [];
+}
+
 function setPlaceMarkers(places) {
     //TODO -- would b nice to make a custom popup displaying the title of the place w/ css
     //Kinda like how google maps does
@@ -310,7 +314,9 @@ function setPlaceMarkers(places) {
     });
 }
 
-//TODO -- would be nice to inform the user if theres no search results near a given location
+//Events for the filters n stuff
+
+//TODO -- would be nice to inform the user if theres no search results near a given location (with a cool css popup, alert works tho)
 async function search() {
     try { //TODO -- replace w/ actual backend location
         const response = await fetch("http://localhost:5057/search", {
@@ -327,6 +333,12 @@ async function search() {
 
         const placeResults = await response.json();
         clearExistingPlaceMarkers();
+
+        if (placeResults.length === 0) {
+            alert("Sorry, couln't find any places. Adjust the search location or your filters and try again.");
+            return;
+        }
+
         setPlaceMarkers(placeResults);
 
     } catch (error) {
@@ -340,23 +352,15 @@ async function search() {
 //Initialise the map for the given session
 user.map = mapSetup();
 
+const filterBtn = document.getElementById('filter-btn');
 const geolocateBtn = document.getElementById('geolocate');
 const searchBtn = document.getElementById('search');
 
 //This could b in a different spot
 const placeInfo = document.getElementById('place-info');
 
-//Remove animation classes at the end of an animation
-placeInfo.addEventListener('animationend', () => {
-    if (placeInfo.classList.contains('slideout-left')) {
-        //Needs to occur on animaton end so it dissapears after it's out of sight
-        placeInfo.style.display = 'none';
-    }
-
-    //Safe bc methods do nothing if class not present
-    placeInfo.classList.remove('slidein-left');
-    placeInfo.classList.remove('slideout-left');
-});
+//Bind event to remove slidein classes @ end of animation
+removeSlideinClassesAtEnd(placeInfo);
 
 //So user can't interact with map through the place info sidebar
 L.DomEvent.disableClickPropagation(placeInfo);

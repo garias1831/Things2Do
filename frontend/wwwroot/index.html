@@ -31,7 +31,6 @@
             <!--TODO -- probably want an about section (purpose of the site, e.g)-->
             <h2>How - To?</h2>
             <section id="info">
-                
                 <div class="info-card">
                     <div>
                         <div class="info-number"><p class="info-text">1.</p></div>
@@ -51,7 +50,7 @@
                         <div class="info-content">
                             <p class="info-text">Press the filter</p>
                             <img class="info-img" src="images/icons/filter.png" alt="filter icon">
-                            <p class="info-text">button to query based on price, distance, etc.</p>
+                            <p class="info-text">button to query based on keyword, distance, etc.</p>
                         </div>
                     </div>
                 </div>
@@ -84,7 +83,7 @@
                 <main>
                     <div id="map-container">
                         <div id="map-sidebar">
-                            <button class="sidebar-btn">
+                            <button id="filter-btn" class="sidebar-btn">
                                 <img class="sidebar-img" src="images/icons/filterblue.png" alt=" filter">
                             </button>
                             <button id="geolocate" class="sidebar-btn">
@@ -96,6 +95,9 @@
                         </div>
                         <div id="map">
                             <!--sus but this works-->
+                            <div id="filters">
+
+                            </div>
                             <div id="place-info">
                                 <div id="close-row-wrapper">
                                     <button id="close-place-info">
@@ -110,7 +112,7 @@
                                 </div>
                                 <div id="place-info-content">
                                     
-                                    <div id="place-info-hours" class="place-info-nullable" data-name="openingHours">
+                                    <div id="place-info-hours" class="place-info-box place-info-nullable" data-name="openingHours">
                                         <p class="place-info-heading">Opening Hours</p>
                                         <div>
                                             <div class="info-hours-entry">

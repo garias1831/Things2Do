@@ -51,7 +51,7 @@ public static class SearchEndpoints
                     });
                 
                 //FOR LOGGING -- excecute th query to see log statements
-                places.ToList();
+                //places.ToList();
 
                 return Results.Ok(places);
                 
@@ -62,7 +62,7 @@ public static class SearchEndpoints
             catch (HttpRequestException e)
             {
                 //NOTE -- may want to inform the client somehow?
-                Console.Error.WriteLine($"HTTP error: {e.Message}");
+                Log.Error($"HTTP error: {e.Message}");
                 return Results.StatusCode(500); //FIXME Prob want to return something else
             }
 
