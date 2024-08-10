@@ -87,7 +87,7 @@ function getUserLocation() {
 
 //FIXME -- anim not playing on first click,
 //These 2 fns oggle the slidein / slideuot animation
-function animateIfHidden(el) {
+function slideinIfHidden(el) {
     //Display the sliding in animation
     if (el.style.display === 'none') {
         el.classList.add('slidein-left'); //only animate if hidden
@@ -259,7 +259,7 @@ function showPlaceInfo(place) {
     const titleBox = document.getElementById('place-title');
     const addressBox = document.getElementById('place-address');
     
-    animateIfHidden(document.getElementById('place-info'));
+    slideinIfHidden(document.getElementById('place-info'));
     //Render attributes 
     titleBox.textContent = place.title;
     addressBox.textContent = place.address;
@@ -281,9 +281,8 @@ function showPlaceInfo(place) {
     renderHoursInfo(place.openingHours);
 }
 
-function hidePlaceInfo() {
-    const placeInfo = document.getElementById('place-info');
-    placeInfo.classList.add('slideout-left');  
+function hideSidepanelInfo(el) {
+    el.classList.add('slideout-left');  
     //Note the handlers at the end of the script
 }
 
@@ -353,6 +352,7 @@ async function search() {
 user.map = mapSetup();
 
 const filterBtn = document.getElementById('filter-btn');
+const filterPanel = document.getElementById('filters');
 const geolocateBtn = document.getElementById('geolocate');
 const searchBtn = document.getElementById('search');
 
@@ -367,8 +367,21 @@ L.DomEvent.disableClickPropagation(placeInfo);
 L.DomEvent.disableScrollPropagation(placeInfo);
 
 const closePlaceInfoBtn = document.getElementById('close-place-info');
+closePlaceInfoBtn.addEventListener('click', () => hideSidepanelInfo(placeInfo));
 
 geolocateBtn.addEventListener('click', () => getUserLocation());
-searchBtn.addEventListener('click',  () => search());
+searchBtn.addEventListener('click', () => search());
 
-closePlaceInfoBtn.addEventListener('click', () => hidePlaceInfo());
+removeSlideinClassesAtEnd(filterPanel);
+filterBtn.addEventListener('click', () => {
+    slideinIfHidden(filterPanel);
+} );
+L.DomEvent.disableClickPropagation(filterPanel);
+L.DomEvent.disableScrollPropagation(filterPanel);
+
+const closeFilterBtn = document.getElementById('close-filters');
+closeFilterBtn.addEventListener('click', () => hideSidepanelInfo(filterPanel));
+
+
+
+

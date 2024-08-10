@@ -96,11 +96,85 @@
                         <div id="map">
                             <!--sus but this works-->
                             <div id="filters">
-
+                                <div class="close-row-wrapper">
+                                    <button id="close-filters" class="close-sidepanel-btn">
+                                        <img src="images/icons/placeinfo/x.png" alt="X">
+                                    </button>
+                                </div>
+                                <div>
+                                    <!--TODO fix the class naming here-->
+                                    <div>
+                                        <p class="place-info-heading">Distance</p>
+                                        <label for="distance-slider" class="place-info-text">16 mi</label>
+                                        <input id="distance-slider" type="range">
+                                    </div>
+                                    <div>
+                                        <p class="place-info-heading">Hours of Operation</p>
+                                        <label for="hours-slider-start" class="place-info-text">Opens at 2:00 AM</label>
+                                        <input id="hours-slider-start" type="range">
+                                        <label for="hours-slider-end" class="place-info-text">Closes at 4:00 PM</label>
+                                        <input id="hours-slider-end" type="range">
+                                    </div>
+                                    <div>
+                                        <p class="place-info-heading">Place Types</p>
+                                        <div>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-food-and-drink" type="checkbox" checked>
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Food and Drink
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-entertainment" type="checkbox" >
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Entertainment
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-museums" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Museums
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-landmarks-and-monuments" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Landmarks and Monuments
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-shopping" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Shopping
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-outdoor-recreation" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Outdoor Recreation
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-themeparks-zoos-aquariums" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Theme Parks, Zoos, and Aquariums
+                                            </label>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div id="place-info">
-                                <div id="close-row-wrapper">
-                                    <button id="close-place-info">
+                                <div class="close-row-wrapper">
+                                    <button id="close-place-info" class="close-sidepanel-btn">
                                         <img src="images/icons/placeinfo/x.png" alt="X">
                                     </button>
                                 </div>

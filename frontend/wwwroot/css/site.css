@@ -198,7 +198,7 @@ small {font-size: 0.833rem; /* 13.28px */}
 }
 
 /*Defaults to drag bc place-info sits ontop of leaflet map*/
-#place-info:hover {
+#place-info:hover, #filters:hover {
   cursor: auto;
 }
 
@@ -231,8 +231,7 @@ small {font-size: 0.833rem; /* 13.28px */}
   }
 }
 
-#close-place-info {
-  
+.close-sidepanel-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,11 +243,11 @@ small {font-size: 0.833rem; /* 13.28px */}
   border-radius: 50%;
 }
 
-#close-place-info:hover {
+.close-sidepanel-btn:hover {
   background: var(--secondaryshade1);
 }
 
-#close-row-wrapper {
+.close-row-wrapper {
   display: flex;
   justify-content: right;
 }
@@ -384,13 +383,17 @@ small {font-size: 0.833rem; /* 13.28px */}
 }
 
 /*Style the filter left hand thingy*/
+
+/*NOTE -- potentially bad thing about this is that its the same size as the placeinfo thing, which means if hte user
+searches while placing their filters thers not much visual indication of a change
+Should b okay tho*/
 #filters { /*Same as styles for place info, but takes priority over it*/
   display: none;
   position: absolute;
   height: 100%;
-  width: clamp(15rem, 25rem, 45%); /*FIXME this should DEFINITELY be clamped*/
+  width: clamp(15rem, 25rem, 45%); /*FIXME this should prob b more*/
   padding: 0.5rem;
-  z-index: 1001; /*So it sits on top of the map*/
+  z-index: 1001; /*Sit on top of place info*/
   background-color: var(--secondary);
 
   font-family: 'Noto Serif';
@@ -398,6 +401,134 @@ small {font-size: 0.833rem; /* 13.28px */}
 
   overflow-y: auto; /*Scroll if the info is too much*/
 }
+
+/*The custom slidebars used for this section*/
+/*https://range-input-css.netlify.app/ was amazing here*/
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+#filters input[type="range"] {
+  --thumbheight: 2.25rem;
+  --thumbwidth: 0.75rem;
+  --trackheight: 0.85rem;
+  
+  
+  display: block;
+  width: 75%;
+
+  margin: 0.5rem 0 0.5rem 0;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+#filters input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #add8e6;
+  border-radius: 5px;
+  height: var(--trackheight);
+  border: 3px var(--accent) solid;
+}
+
+/* slider thumb */
+#filters input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -11.2px; /* Centers thumb on the track */
+  background-color: var(--accent);
+  border-radius: 5px;
+  height: var(--thumbheight);
+  width: var(--thumbwidth);
+}
+
+#filters input[type="range"]:focus::-webkit-slider-thumb {
+  background-color: var(--accentshade1);
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+#filters input[type="range"]::-moz-range-track {
+  background-color: var(--secondaryshade1);
+  border-radius: 5px;
+  border: 3px var(--accent) solid;
+  height: var(--trackheight);
+}
+
+/* slider thumb */
+#filters input[type="range"]::-moz-range-thumb {
+  background-color: var(--accent);
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 5px;
+  height: var(--thumbheight);
+  width: var(--thumbwidth);
+}
+
+
+#filters input[type="range"]:focus::-moz-range-thumb{
+  background-color: var(--accentshade1);
+}
+
+
+/*Styling checkboxes*/
+.type-filter-checkitem {
+  display: flex;
+  align-items: center;
+
+  margin: 0.5rem 0 0.5rem;
+}
+
+.type-filter-checkitem input {
+  /*hide default checkbox*/
+  /*This works because the label wraps around our input, so
+  we still toggle the checkbox by just clicking on the text*/
+  position: absolute;
+  opacity: 0;
+  /* cursor: pointer; */
+  height: 0;
+  width: 0;
+}
+
+.type-filter-checkbox {
+  /*Need this 4 the little bubble*/
+  /* box-sizing: border-box; */
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 2px;
+  margin: 0 0.5rem 0 0;
+ 
+
+  background-color: var(--secondaryshade1);
+  border-radius: 5px;
+  
+  border: 1px solid var(--accent);
+}
+
+.type-filter-bubble {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+/* .type-filter-checkitem:hover input ~ .type-filter-checkmark {
+  background-color: #ccc;
+} */
+
+/* When checkbox is checked toggle the inner bubble */
+.type-filter-checkitem input:checked ~ .type-filter-checkbox {
+  background-color: var(--accent);
+}
+
+
 
 
 footer {
