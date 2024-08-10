@@ -24,6 +24,10 @@ public static class SearchEndpoints
         // POST /search
         group.MapPost("/", async (SearchPlaceDto searchQuery, HereService hereApi) => {
            
+            Log.Information($"Distance: {searchQuery.Filters.Distance}");
+            Log.Information($"Hours: {searchQuery.Filters.Hours.Start} - {searchQuery.Filters.Hours.End}");
+            Log.Information($"Types: {searchQuery.Filters.TypeFilters}");
+
             //May export this into seperate method but this works
             try //This stuff not done yet
             {
@@ -36,7 +40,7 @@ public static class SearchEndpoints
                     .Select(pl => //map fn
                     {
                         
-                        //Pack data into contact dto
+                        //Pack in info DTOs
                         ContactResultDto? contacts = PlaceResultInfoFactory.CreateContactDto(pl);
                         OpeningHoursResultDto? openingHours = PlaceResultInfoFactory.CreateOpeningHoursDto(pl);
 

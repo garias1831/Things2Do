@@ -27,9 +27,7 @@ builder.Services.AddSerilog();
 
 var app = builder.Build();
 
-
 app.UseStaticFiles();
-
 app.UseCors();
 
 app.MapSearchEndpoints();

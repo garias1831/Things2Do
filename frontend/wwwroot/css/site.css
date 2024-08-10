@@ -5,6 +5,7 @@
     --primary: #1f90d6;
     --secondary: #81bcd9;
     --secondaryshade1: #A1CDE4 ;
+    --secondaryshade2: #c0deec;
     --accent: #3c6138;
     --accentshade1: #638160;
 
@@ -423,11 +424,10 @@ input[type="range"]:focus {
   --thumbwidth: 0.75rem;
   --trackheight: 0.85rem;
   
-  
   display: block;
   width: 75%;
 
-  margin: 0.5rem 0 0.5rem 0;
+  margin: 0.75rem 0 0.75rem 0;
 }
 
 /******** Chrome, Safari, Opera and Edge Chromium styles ********/
@@ -443,7 +443,8 @@ input[type="range"]:focus {
 #filters input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  margin-top: -11.2px; /* Centers thumb on the track */
+  /*Vsry sligltly offcenter in chrome, safari etc, but not super noticable*/
+  margin-top: calc((var(--trackheight) / 2) - (var(--thumbheight) /2)); 
   background-color: var(--accent);
   border-radius: 5px;
   height: var(--thumbheight);
@@ -451,6 +452,7 @@ input[type="range"]:focus {
 }
 
 #filters input[type="range"]:focus::-webkit-slider-thumb {
+  border: 3px solid var(--accent);
   background-color: var(--accentshade1);
 }
 
@@ -472,8 +474,8 @@ input[type="range"]:focus {
   width: var(--thumbwidth);
 }
 
-
 #filters input[type="range"]:focus::-moz-range-thumb{
+  border: 3px solid var(--accent);
   background-color: var(--accentshade1);
 }
 
@@ -484,6 +486,7 @@ input[type="range"]:focus {
   align-items: center;
 
   margin: 0.5rem 0 0.5rem;
+  width: fit-content;
 }
 
 .type-filter-checkitem input {
@@ -498,11 +501,11 @@ input[type="range"]:focus {
 }
 
 .type-filter-checkbox {
-  /*Need this 4 the little bubble*/
+
   /* box-sizing: border-box; */
   width: 1.5rem;
   height: 1.5rem;
-  padding: 2px;
+  padding: 2px;   /*Need this 4 the little bubble*/
   margin: 0 0.5rem 0 0;
  
 
@@ -519,12 +522,12 @@ input[type="range"]:focus {
 }
 
 /* On mouse-over, add a grey background color */
-/* .type-filter-checkitem:hover input ~ .type-filter-checkmark {
-  background-color: #ccc;
-} */
+.type-filter-checkitem:hover input ~ .type-filter-checkbox {
+  background-color: var(--secondaryshade2);
+}
 
 /* When checkbox is checked toggle the inner bubble */
-.type-filter-checkitem input:checked ~ .type-filter-checkbox {
+.type-filter-checkitem input:checked ~ .type-filter-checkbox > .type-filter-bubble {
   background-color: var(--accent);
 }
 

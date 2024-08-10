@@ -103,23 +103,25 @@
                                 </div>
                                 <div>
                                     <!--TODO fix the class naming here-->
+                                    <!--TODO also make a little info bubble to clarify the purpose of this section,
+                                    i.e that setting 3 - 4 PM will display all businesses that are open between those-->
                                     <div>
-                                        <p class="place-info-heading">Distance</p>
-                                        <label for="distance-slider" class="place-info-text">16 mi</label>
-                                        <input id="distance-slider" type="range">
+                                        <p class="place-info-heading">Search Radius</p>
+                                        <label for="distance-slider" class="place-info-text">25 miles</label>
+                                        <input id="distance-slider" type="range" min="1" max="50" value="25">
                                     </div>
                                     <div>
-                                        <p class="place-info-heading">Hours of Operation</p>
-                                        <label for="hours-slider-start" class="place-info-text">Opens at 2:00 AM</label>
-                                        <input id="hours-slider-start" type="range">
-                                        <label for="hours-slider-end" class="place-info-text">Closes at 4:00 PM</label>
-                                        <input id="hours-slider-end" type="range">
+                                        <p class="place-info-heading">Open Between</p>
+                                        <label for="hours-slider-start" class="place-info-text">Start: 3:00 PM</label>
+                                        <input id="hours-slider-start" type="range" min="0" max="23" value="15">
+                                        <label for="hours-slider-end" class="place-info-text">End: 4:00 PM</label>
+                                        <input id="hours-slider-end" type="range" min="0" max="23" value="16">
                                     </div>
-                                    <div>
+                                    <div id="place-type-filters">
                                         <p class="place-info-heading">Place Types</p>
                                         <div>
                                             <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-food-and-drink" type="checkbox" checked>
+                                                <input id="check-food-and-drink" type="checkbox">
                                                 <div class="type-filter-checkbox">
                                                     <div class="type-filter-bubble"></div>
                                                 </div>
@@ -218,10 +220,9 @@
                                                 <p class="place-info-text"></p>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <div id="place-info-contacts" class="place-info-box place-info-nullable" data-name="contacts">
-                                        
+                                       
                                         <p class="place-info-heading">Contacts</p>
                                         <div id="place-info-phone" class="place-info-box">
                                             <img class="place-info-img"src="images/icons/placeinfo/phone.png" alt="phone">
@@ -230,7 +231,6 @@
                                                 <div id="phone-dropdown" class="contact-dropdown"></div>
                                             </div>
                                             <button id="phone-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
-
                                         </div>
                                         <div id="place-info-web" class="place-info-box">
                                             <img class="place-info-img"src="images/icons/placeinfo/web.png" alt="web">
@@ -238,7 +238,6 @@
                                                 <div id="web-dropdown" class="contact-dropdown"></div>
                                             </div>
                                             <button id="web-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
-
                                         </div>
                                         <div id="place-info-email" class="place-info-box">
                                             <img class="place-info-img"src="images/icons/placeinfo/email.png" alt="email">

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Things2Do.Api.Dtos.OpeningHours;
 
 

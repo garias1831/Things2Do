@@ -3,9 +3,52 @@ const user = userSetup();
 
 /*Sets up the user object representing all the data*/
 function userSetup() {
+    //Server should process utc date
+    const currDate = new Date();
+    const startDate = new Date(
+        currDate.getUTCFullYear(),
+        currDate.getUTCMonth(),
+        currDate.getUTCDate(),
+        15,
+        0,
+        0
+    );
+
+    const endDate = new Date(
+        currDate.getUTCFullYear(),
+        currDate.getUTCMonth(),
+        currDate.getUTCDate(),
+        16,
+        0,
+        0
+    );
+
+    // console.log(startDate.toLocaleTimeString("en-US"));
+    
+    const placeFilters = {
+        distance: 16093, //10 mi
+        hours: {
+            start: startDate, //todo prob wrongz
+            end: endDate
+        },
+        typeFilters: {
+            foodDrink: false,
+            entertainment: false,
+            museums: false,
+            landmarksMonuments: false,
+            shopping: false,
+            outdoorRecreation: false,
+            themeparksZoosAquariums: false
+        }
+    }
+
     const user = {
+        //Data to send to the server
         lat: 35.156038923689195,
         lng: -90.05194020924256,
+        filters: placeFilters,
+
+        //Data for displaying the map
         //The following initialized by mapsetup fn
         locationMarker: undefined, //Draggable location pin
         activePlaceMarkers: [], //Leaflet marker objects for place rsults
@@ -109,7 +152,7 @@ function removeSlideinClassesAtEnd(el) {
     });
 }
 
-//From gpt lol
+//From gpt 
 function stringToTime(timeOnly) {
 
     // Get the current date
@@ -315,19 +358,109 @@ function setPlaceMarkers(places) {
 
 //Events for the filters n stuff
 
+//Change the filter val stored in the global user thing
+function changeFilterDistance() {
+    //TODO -- would be nice to be able to toggle between mi and km
+    const distanceSlider = document.getElementById('distance-slider');
+    const distanceTextbox = document.querySelector('label[for="distance-slider"]');
+    
+    distanceTextbox.textContent = `${distanceSlider.value} miles`;
+    //console.log(distanceSlider.value);
+    //Convert miles to meters
+    const distanceM = Math.floor(distanceSlider.value * 1.60934 * 1000);
+    user.filters.distance = distanceM;
+}
+
+//These 2 fns set the opening hours filter in the user object
+function changeOpeningTimeFilter() {
+    const openingHrsSlider = document.getElementById('hours-slider-start');
+    
+    const currDate = new Date();
+    user.filters.hours.start = new Date( //need the utc vals so cant use stringToTime for storage
+        currDate.getUTCFullYear(),
+        currDate.getUTCMonth(),
+        currDate.getUTCDate(),
+        openingHrsSlider.value,
+        0,
+        0
+    );
+}
+
+function changeClosingTimeFilter() {
+    const closeHrsSlider = document.getElementById('hours-slider-end');
+
+    const currDate = new Date();
+    user.filters.hours.end = new Date( //need the utc vals so cant use stringToTime for storage
+        currDate.getUTCFullYear(),
+        currDate.getUTCMonth(),
+        currDate.getUTCDate(),
+        closeHrsSlider.value,
+        0,
+        0
+    );
+
+    //We use the same day here, so if the end time occurs before, assume rollover to the next day
+    if (user.filters.hours.end < user.filters.hours.start) {
+        user.filters.hours.end.setUTCDate(currDate.getUTCDate() + 1);
+    }
+}
+
+//Listener that changeds the text based on hours slider values
+function displayHoursSliderText() {
+    const openingHrsSlider = document.getElementById('hours-slider-start');
+    const closeHrsSlider = document.getElementById('hours-slider-end');
+    const openingHrsText = document.querySelector('label[for="hours-slider-start"]');
+    const closingHrsText = document.querySelector('label[for="hours-slider-end"]');
+
+    //If the opening and closing sliders are set to the same time(assume same day), mark as open 24h
+    if (openingHrsSlider.value === closeHrsSlider.value) {
+        openingHrsText.textContent = 'Open 24 hours';
+        closingHrsText.textContent = 'Open 24 hours';
+        return;
+    }
+    const startHrsAsDate = stringToTime(`${openingHrsSlider.value}:00:00`);
+    const endHrsAsDate = stringToTime(`${closeHrsSlider.value}:00:00`);
+
+
+    const options = {
+        timeStyle : "short" //Display in hh:mm time format
+    };
+    openingHrsText.textContent = 
+        `Start: ${startHrsAsDate.toLocaleTimeString("en-US", options)}`;
+
+    closingHrsText.textContent = 
+        `End: ${endHrsAsDate.toLocaleTimeString("en-US", options)}`;
+    
+}
+
+//Register if the client checked a place category 2 send 2 server
+function typeFilterChecked(checkIndex) {
+    //Bool prop array
+    const typeFilters = user.filters.typeFilters;
+    const filterKeys = Object.keys(typeFilters);
+
+    const key = filterKeys[checkIndex];
+    typeFilters[key] = !typeFilters[key];
+    
+}
+
+
 //TODO -- would be nice to inform the user if theres no search results near a given location (with a cool css popup, alert works tho)
 async function search() {
     try { //TODO -- replace w/ actual backend location
+        const body = JSON.stringify({
+            lat: user.lat, 
+            lng: user.lng,
+            filters: user.filters
+        });
+
         const response = await fetch("http://localhost:5057/search", {
             method: "POST",
             headers: {
                 "Accept" : "application/json",
                 "Content-Type" : "application/json"
             },
-            body: JSON.stringify({
-                lat: user.lat, 
-                lng: user.lng
-            })
+            body: body
         });
 
         const placeResults = await response.json();
@@ -356,9 +489,9 @@ const filterPanel = document.getElementById('filters');
 const geolocateBtn = document.getElementById('geolocate');
 const searchBtn = document.getElementById('search');
 
+
 //This could b in a different spot
 const placeInfo = document.getElementById('place-info');
-
 //Bind event to remove slidein classes @ end of animation
 removeSlideinClassesAtEnd(placeInfo);
 
@@ -369,9 +502,12 @@ L.DomEvent.disableScrollPropagation(placeInfo);
 const closePlaceInfoBtn = document.getElementById('close-place-info');
 closePlaceInfoBtn.addEventListener('click', () => hideSidepanelInfo(placeInfo));
 
+
 geolocateBtn.addEventListener('click', () => getUserLocation());
 searchBtn.addEventListener('click', () => search());
 
+
+//Bindings for filter stuff
 removeSlideinClassesAtEnd(filterPanel);
 filterBtn.addEventListener('click', () => {
     slideinIfHidden(filterPanel);
@@ -379,9 +515,25 @@ filterBtn.addEventListener('click', () => {
 L.DomEvent.disableClickPropagation(filterPanel);
 L.DomEvent.disableScrollPropagation(filterPanel);
 
+//Distance and hours sliders
+const distanceSlider = document.getElementById('distance-slider');
+const openingHrsSlider = document.getElementById('hours-slider-start');
+const closeHrsSlider = document.getElementById('hours-slider-end');
+
+distanceSlider.addEventListener('input', () => changeFilterDistance());
+openingHrsSlider.addEventListener('input', () => changeOpeningTimeFilter());
+closeHrsSlider.addEventListener('input', () => changeClosingTimeFilter());
+openingHrsSlider.addEventListener('input', () => displayHoursSliderText());
+closeHrsSlider.addEventListener('input', () => displayHoursSliderText());
+
+//Type checkboxes
+const typeCheckboxes = document.querySelectorAll('#place-type-filters input[type="checkbox"]');
+for (let i = 0; i < typeCheckboxes.length; i++) {
+    const checkbox = typeCheckboxes[i];
+    checkbox.addEventListener('change', () => typeFilterChecked(i));
+
+}
+
+
 const closeFilterBtn = document.getElementById('close-filters');
 closeFilterBtn.addEventListener('click', () => hideSidepanelInfo(filterPanel));
-
-
-
-
