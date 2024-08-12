@@ -6,18 +6,18 @@ public record class OpeningHoursResultDto
 {
     public bool IsOpen { get; init; }
 
-    public TimeRange? Monday { get; set; }
+    public TimeRangeDto? Monday { get; set; }
 
-    public TimeRange? Tuesday { get; set; }
+    public TimeRangeDto? Tuesday { get; set; }
 
-    public TimeRange? Wednesday { get; set; }
-    public TimeRange? Thursday { get; set; }
+    public TimeRangeDto? Wednesday { get; set; }
+    public TimeRangeDto? Thursday { get; set; }
 
-    public TimeRange? Friday { get; set; }
+    public TimeRangeDto? Friday { get; set; }
 
-    public TimeRange? Saturday { get; set; }
+    public TimeRangeDto? Saturday { get; set; }
 
-    public TimeRange? Sunday { get; set; }
+    public TimeRangeDto? Sunday { get; set; }
 
     public OpeningHoursResultDto(bool isOpen)
     {

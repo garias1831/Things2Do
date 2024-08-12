@@ -1,5 +1,8 @@
 using System.Net.Http.Headers;
 using Things2Do.Api.Data.Deserialization;
+using Things2Do.Api.Data.Here;
+using Things2Do.Api.Dtos;
+using Things2Do.Api.Filtering;
 
 namespace Things2Do.Api.Services;
 
@@ -27,33 +30,32 @@ public class HereService
         _apiKey = Environment.GetEnvironmentVariable("HereKey")!;
     }
 
-    public async Task<List<PlaceDeserialized>> GetPlacesAsync(decimal lat, decimal lng)
+    public async Task<List<PlaceDeserialized>> GetPlacesAsync(SearchPlaceDto request)
     {
         //NOTE -- the lang=en param here returns place names, address, etc in ENGLISH
         //For future may want to find lang of page and shove it in here + render days of week in local language / culture
         //Or render in client lang w/ subtitle of native lang
         
-        //NOTE - SAMPLE CATEGORY GROUPING
-        //Food and drink: 100-1000-0000 (generic),300-3000-0065, 300-3000-0351, 300-3000-0351  (brevwey distillery winery)  
-        //Enteretainment just the norm
-        //Museums: 300-3100-0000, 300-3000-0024 (generic, artgallery)
-        //Landmarks and monuments: all cats except winery and breqery
+        var filtering = new PrePlaceFiltering();
+
+        decimal lat = request.Lat;
+        decimal lng = request.Lng;
+        int searchRadius = request.Filters.Distance; //in meters
+        string categoryCodes = filtering.GetPlaceCategoryCodes(request.Filters.TypeFilters);
 
         var placeCollection = await _httpClient.GetFromJsonAsync<PlaceCollectionDeserialized>(
-            $"?at={lat},{lng}&lang=en&apiKey={_apiKey}"
+            String.Concat(
+                $"?at={lat},{lng}",
+                $"&categories={categoryCodes}",
+                $"&in=circle:{lat},{lng};r={searchRadius}",
+                $"&lang=en&apiKey={_apiKey}"
+            )
         );
         
         if (placeCollection is null)
         {
             return new List<PlaceDeserialized>();
         }
-
-        // foreach (PlaceDeserialized place in placeCollection.Items)
-        // {
-        //     System.Console.WriteLine($"{place.Title} at: {place.Position.Lat}, {place.Position.Lng}");
-        //     // System.Console.WriteLine(place.Distance.ToString());
-        //     //System.Console.WriteLine("\n");
-        // }
 
         return placeCollection.Items;       
     }

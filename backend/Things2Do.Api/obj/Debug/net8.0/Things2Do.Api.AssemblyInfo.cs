@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Things2Do.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5f65ca55ac762de21ae392d30f288d5aa6851be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a38258b62ed9b542c26848dfe7d64d926bd22e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Things2Do.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Things2Do.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

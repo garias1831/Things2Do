@@ -11,8 +11,10 @@ public record class SearchFiltersDto
     //Filter places based on whether they are open on a particular date (the start time is during client's current day of the week)
     //Places w/ no opening hours information included by default
     //TODO -- may make it so that you can select the date in the future
+
+    //DateTime ranges in UTC (default) with a timezone offset for convertin
     [Required] 
-    DateTimeRange Hours,
+    DateTimeRangeDto Hours,
 
     [Required]
     TypeFiltersDto TypeFilters

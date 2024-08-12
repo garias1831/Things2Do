@@ -2,16 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Things2Do.Api.Dtos.OpeningHours; //NOt sure if this should go here
 
-public struct DateTimeRange //NOTE -- may wanna move somewhere else lowk
-{
-    //If start == end ==> place open 24 hours
-    public DateTime Start { get; set; }
+public record struct DateTimeRangeDto //NOTE -- may wanna move somewhere else lowk
+(
+    [Required]
+    DateTime Start,
 
-    public DateTime End {get; set; }
+    [Required]
+    DateTime End,
 
-    public DateTimeRange(DateTime start, DateTime end)
-    {
-        Start = start;
-        End = end;
-    }
-}
+    [Required] [Range(-720, 840)]
+    int TimeZoneOffset //How far ahead / behind client time is from UTC in minutes
+);

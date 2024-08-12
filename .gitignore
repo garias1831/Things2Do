@@ -1,1 +1,2 @@
-backend/Things2Do.Api/test.http
+backend/Things2Do.Api/testBasic.http
+backend/Things2Do.Api/testNew.http

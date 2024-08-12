@@ -52,12 +52,12 @@ public static class PlaceResultInfoFactory
 
             string durationHours = icalEntry.Duration.Substring(2, 2);
             
-            TimeRange range;
+            TimeRangeDto range;
             if (durationHours == "24")
             {
                 //Mark as open 24 for hours   
                 TimeOnly end = start;
-                range = new TimeRange(start, end);
+                range = new TimeRangeDto(start, end);
             }
             else
             {
@@ -65,7 +65,7 @@ public static class PlaceResultInfoFactory
                 TimeOnly duration = TimeOnly.ParseExact(durationString, @"HH\Hmm\M");
                 TimeOnly end = start.Add(duration.ToTimeSpan());
 
-                range = new TimeRange(start, end);
+                range = new TimeRangeDto(start, end);
 
                 //Log.Information($"Title: {place.Title}, Hours: {start}-{end}");
             }

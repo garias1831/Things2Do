@@ -3,33 +3,34 @@ const user = userSetup();
 
 /*Sets up the user object representing all the data*/
 function userSetup() {
-    //Server should process utc date
+    //Server should process LOCAL (client) TIME
     const currDate = new Date();
     const startDate = new Date(
-        currDate.getUTCFullYear(),
-        currDate.getUTCMonth(),
-        currDate.getUTCDate(),
+        currDate.getFullYear(),
+        currDate.getMonth(),
+        currDate.getDate(),
         15,
         0,
         0
     );
 
     const endDate = new Date(
-        currDate.getUTCFullYear(),
-        currDate.getUTCMonth(),
-        currDate.getUTCDate(),
+        currDate.getFullYear(),
+        currDate.getMonth(),
+        currDate.getDate(),
         16,
         0,
         0
     );
-
-    // console.log(startDate.toLocaleTimeString("en-US"));
     
     const placeFilters = {
         distance: 16093, //10 mi
         hours: {
             start: startDate, //todo prob wrongz
-            end: endDate
+            end: endDate,
+            //need to pass the timezone offset in here because serialization auto converts to UTC
+            //Negative because we want to go from utc to local, not other way which is default
+            timeZoneOffset: -currDate.getTimezoneOffset() 
         },
         typeFilters: {
             foodDrink: false,
@@ -371,15 +372,22 @@ function changeFilterDistance() {
     user.filters.distance = distanceM;
 }
 
+//FIXME -- just realized this system of using the current date is horrible
+//NEED to Change to using time input boxes (or monday tuesday etc)
+//BEst to have the user choose the START DATE (and calc based on there)
+
+//Also add a button or checkbox or something to IGNORE this filter
+//AND a btn to show / hide places with NO opening hour information
+
 //These 2 fns set the opening hours filter in the user object
 function changeOpeningTimeFilter() {
     const openingHrsSlider = document.getElementById('hours-slider-start');
     
     const currDate = new Date();
-    user.filters.hours.start = new Date( //need the utc vals so cant use stringToTime for storage
-        currDate.getUTCFullYear(),
-        currDate.getUTCMonth(),
-        currDate.getUTCDate(),
+    user.filters.hours.start = new Date( 
+        currDate.getFullYear(),
+        currDate.getMonth(),
+        currDate.getDate(),
         openingHrsSlider.value,
         0,
         0
@@ -390,18 +398,18 @@ function changeClosingTimeFilter() {
     const closeHrsSlider = document.getElementById('hours-slider-end');
 
     const currDate = new Date();
-    user.filters.hours.end = new Date( //need the utc vals so cant use stringToTime for storage
-        currDate.getUTCFullYear(),
-        currDate.getUTCMonth(),
-        currDate.getUTCDate(),
-        closeHrsSlider.value,
+    user.filters.hours.end = new Date( 
+        currDate.getFullYear(),
+        currDate.getMonth(),
+        currDate.getDate(),
+        closeHrsSlider.value, 
         0,
         0
     );
 
     //We use the same day here, so if the end time occurs before, assume rollover to the next day
     if (user.filters.hours.end < user.filters.hours.start) {
-        user.filters.hours.end.setUTCDate(currDate.getUTCDate() + 1);
+        user.filters.hours.end.setDate(currDate.getDate() + 1);
     }
 }
 
@@ -441,9 +449,7 @@ function typeFilterChecked(checkIndex) {
 
     const key = filterKeys[checkIndex];
     typeFilters[key] = !typeFilters[key];
-    
 }
-
 
 //TODO -- would be nice to inform the user if theres no search results near a given location (with a cool css popup, alert works tho)
 async function search() {
@@ -467,7 +473,7 @@ async function search() {
         clearExistingPlaceMarkers();
 
         if (placeResults.length === 0) {
-            alert("Sorry, couln't find any places. Adjust the search location or your filters and try again.");
+            alert("Sorry, couldn't find any places. Adjust the search location or your filters and try again.");
             return;
         }
 
