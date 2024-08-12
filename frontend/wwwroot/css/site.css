@@ -492,6 +492,64 @@ input[type="range"]:focus {
 .dayfilter-dropdown option {
   border: 0px;
 }
+
+.requireinfo-checkitem {
+  display: flex;
+  align-items: center;
+
+  margin: 0.5rem 0 0;
+}
+
+/* On mouse-over, add a background color */
+.requireinfo-checkitem:hover input ~ .type-filter-checkbox {
+  background-color: var(--secondaryshade2);
+}
+
+/* When checkbox is checked toggle the inner bubble */
+.requireinfo-checkitem input:checked ~ .type-filter-checkbox > .type-filter-bubble {
+  background-color: var(--accent);
+}
+
+
+#filter-row-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(25rem, 85%); /*Checkbox gets squished a lil*/
+}
+
+#requirehours-info-img {
+  width: 1rem;
+  height: 1rem;
+}
+
+#requirehours-tooltip {
+  display: none;
+  position: absolute;
+  right: 0; 
+
+  width: 10rem;
+  padding: 2px;
+
+
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background-color: var(--secondary);
+  font-size: 0.75rem;
+}
+
+#tooltip-wrapper {
+  position: relative;
+  height: 1.25rem;
+  width: 1rem;
+}
+
+#tooltip-wrapper:hover #requirehours-tooltip {
+  display: block;
+}
+
+
+
 /*Styling checkboxes*/
 .type-filter-checkitem {
   display: flex;
@@ -501,7 +559,7 @@ input[type="range"]:focus {
   width: fit-content;
 }
 
-.type-filter-checkitem input {
+.type-filter-checkitem input, .requireinfo-checkitem input {
   /*hide default checkbox*/
   /*This works because the label wraps around our input, so
   we still toggle the checkbox by just clicking on the text*/
@@ -533,7 +591,7 @@ input[type="range"]:focus {
   border-radius: 5px;
 }
 
-/* On mouse-over, add a grey background color */
+/* On mouse-over, add a background color */
 .type-filter-checkitem:hover input ~ .type-filter-checkbox {
   background-color: var(--secondaryshade2);
 }

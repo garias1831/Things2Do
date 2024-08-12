@@ -11,9 +11,12 @@ public class PostPlaceFiltering
     //Filter based on the opening hours the user has set and those present in the given dto
     public bool IsOpenBetween(SearchPlaceDto request, PlaceResultDto dto)
     {
-        //No opening hours section we just return
-        //TODO tho -> should make this toggleable by the client
-        if (dto.OpeningHours is null)
+        //No opening hours section we just return (w. client permz)
+        if (dto.OpeningHours is null && request.Filters.RequireHoursInfo)
+        {
+            return false;
+        }
+        else if(dto.OpeningHours is null)
         {
             return true;
         }

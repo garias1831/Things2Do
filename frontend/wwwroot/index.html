@@ -190,7 +190,7 @@
                                         <input id="hours-slider-end" type="range" min="0" max="23" value="16">
                                         
                                         <label for="hours-filter-day" class="place-info-text">Starting on:</label>
-                                        <div>
+                                        <div id="filter-row-wrapper">
                                             <select id="hours-filter-day" class="dayfilter-dropdown place-info-text" value="-1">
                                                 <option value="-1" class="place-info-text">Today's Date</option>
                                                 <option value="0" class="place-info-text">Sunday</option>
@@ -200,10 +200,25 @@
                                                 <option value="4" class="place-info-text">Thursday</option>
                                                 <option value="5" class="place-info-text">Friday</option>
                                                 <option value="6" class="place-info-text">Saturday</option>
-                                            </select
+                                            </select>
+                                            <div id="require-hours-info">
+                                                <label class="requireinfo-checkitem place-info-text">
+                                                    <input id="check-require-hours-info" type="checkbox">
+                                                    <div class="type-filter-checkbox">
+                                                        <div class="type-filter-bubble"></div>
+                                                    </div>
+                                                    Require info <!--Want a space here but not that importante-->
+                                                    <div id="tooltip-wrapper">
+                                                        <img id="requirehours-info-img" src="images/icons/info.png" class="checkitem-img" alt="info">
+                                                        <p id="requirehours-tooltip">
+                                                            If checked, only display places that have opening hours information available
+                                                        </p>
+                                                    </div>
+                                                    
+                                                </label>
+                                            </div>
+                                            
                                         </div>
-                                    
-                                    
                                     </div>
                                     <div id="place-type-filters">
                                         <p class="place-info-heading">Place Types</p>

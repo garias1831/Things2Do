@@ -25,6 +25,7 @@ function userSetup() {
     
     const placeFilters = {
         distance: 16093, //10 mi
+        requireHoursInfo: false,
         hours: {
             start: startDate, //todo prob wrongz
             end: endDate,
@@ -79,9 +80,17 @@ function mapSetup() {
                 attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
              }).addTo(map);
 
+    
     //Set up the search location marker
+    const homeIcon = L.icon({
+        iconUrl: 'images/mapicons/homepin.png',
+        iconSize: [35, 65]
+    })
+
     const homemarker = L.marker([initX, initY], {
+        icon: homeIcon,
         alt: 'search location',
+        zIndexOffset: 1000,
         draggable: true, 
         autoPan: true}).addTo(map);
 
@@ -537,6 +546,11 @@ const distanceSlider = document.getElementById('distance-slider');
 const openingHrsSlider = document.getElementById('hours-slider-start');
 const closeHrsSlider = document.getElementById('hours-slider-end');
 const weekdayFliter = document.getElementById('hours-filter-day');
+const requireHoursInfoToggle = document.getElementById('check-require-hours-info');
+//Toggle between tru / false
+requireHoursInfoToggle.addEventListener('change', () => {
+    user.filters.requireHoursInfo = !user.filters.requireHoursInfo;
+});
 
 distanceSlider.addEventListener('input', () => changeFilterDistance());
 openingHrsSlider.addEventListener('input', () => changeOpeningTimeFilter());
