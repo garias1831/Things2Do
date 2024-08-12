@@ -382,34 +382,18 @@ function changeFilterDistance() {
 //These 2 fns set the opening hours filter in the user object
 function changeOpeningTimeFilter() {
     const openingHrsSlider = document.getElementById('hours-slider-start');
-    
-    const currDate = new Date();
-    user.filters.hours.start = new Date( 
-        currDate.getFullYear(),
-        currDate.getMonth(),
-        currDate.getDate(),
-        openingHrsSlider.value,
-        0,
-        0
-    );
+    user.filters.hours.start.setHours(openingHrsSlider.value);
 }
 
 function changeClosingTimeFilter() {
     const closeHrsSlider = document.getElementById('hours-slider-end');
 
-    const currDate = new Date();
-    user.filters.hours.end = new Date( 
-        currDate.getFullYear(),
-        currDate.getMonth(),
-        currDate.getDate(),
-        closeHrsSlider.value, 
-        0,
-        0
-    );
+    const startDate = user.filters.hours.start;
+    user.filters.hours.end.setHours(closeHrsSlider.value);
 
     //We use the same day here, so if the end time occurs before, assume rollover to the next day
-    if (user.filters.hours.end < user.filters.hours.start) {
-        user.filters.hours.end.setDate(currDate.getDate() + 1);
+    if (user.filters.hours.end < startDate) {
+        user.filters.hours.end.setDate(startDate.getDate() + 1);
     }
 }
 
@@ -439,6 +423,33 @@ function displayHoursSliderText() {
     closingHrsText.textContent = 
         `End: ${endHrsAsDate.toLocaleTimeString("en-US", options)}`;
     
+}
+
+//Sets the startdate for calculating opening hours
+function setFilterWeekday() {
+    const weekdayFliter = document.getElementById('hours-filter-day');
+    //This means the user decided to use today's date 
+    if (weekdayFliter.value === -1) {
+        
+        user.filters.hours.start.setDate(currDate.getDate());
+        return;
+    }
+
+    const currDate = new Date();
+
+    const dateCode = weekdayFliter.value;
+    const currDateCode = currDate.getDay();
+    const delta = dateCode - currDateCode;
+
+    const startDate = user.filters.hours.start;
+    startDate.setDate(
+        delta + startDate.getDate()
+    );
+
+
+    if (user.filters.hours.end < startDate) {
+        user.filters.hours.end.setDate(startDate.getDate() + 1);
+    }
 }
 
 //Register if the client checked a place category 2 send 2 server
@@ -525,12 +536,14 @@ L.DomEvent.disableScrollPropagation(filterPanel);
 const distanceSlider = document.getElementById('distance-slider');
 const openingHrsSlider = document.getElementById('hours-slider-start');
 const closeHrsSlider = document.getElementById('hours-slider-end');
+const weekdayFliter = document.getElementById('hours-filter-day');
 
 distanceSlider.addEventListener('input', () => changeFilterDistance());
 openingHrsSlider.addEventListener('input', () => changeOpeningTimeFilter());
 closeHrsSlider.addEventListener('input', () => changeClosingTimeFilter());
 openingHrsSlider.addEventListener('input', () => displayHoursSliderText());
 closeHrsSlider.addEventListener('input', () => displayHoursSliderText());
+weekdayFliter.addEventListener('input', () => setFilterWeekday());
 
 //Type checkboxes
 const typeCheckboxes = document.querySelectorAll('#place-type-filters input[type="checkbox"]');

@@ -95,85 +95,6 @@
                         </div>
                         <div id="map">
                             <!--sus but this works-->
-                            <div id="filters">
-                                <div class="close-row-wrapper">
-                                    <button id="close-filters" class="close-sidepanel-btn">
-                                        <img src="images/icons/placeinfo/x.png" alt="X">
-                                    </button>
-                                </div>
-                                <div>
-                                    <!--TODO fix the class naming here-->
-                                    <!--TODO also make a little info bubble to clarify the purpose of this section,
-                                    i.e that setting 3 - 4 PM will display all businesses that are open between those-->
-                                    <div>
-                                        <p class="place-info-heading">Search Radius</p>
-                                        <label for="distance-slider" class="place-info-text">10 miles</label>
-                                        <input id="distance-slider" type="range" min="1" max="50" value="10">
-                                    </div>
-                                    <div>
-                                        <p class="place-info-heading">Open Between</p>
-                                        <label for="hours-slider-start" class="place-info-text">Start: 3:00 PM</label>
-                                        <input id="hours-slider-start" type="range" min="0" max="23" value="15">
-                                        <label for="hours-slider-end" class="place-info-text">End: 4:00 PM</label>
-                                        <input id="hours-slider-end" type="range" min="0" max="23" value="16">
-                                    </div>
-                                    <div id="place-type-filters">
-                                        <p class="place-info-heading">Place Types</p>
-                                        <div>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-food-and-drink" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Food and Drink
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-entertainment" type="checkbox" >
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Entertainment
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-museums" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Museums
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-landmarks-and-monuments" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Landmarks and Monuments
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-shopping" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Shopping
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-outdoor-recreation" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Outdoor Recreation
-                                            </label>
-                                            <label class="type-filter-checkitem place-info-text">
-                                                <input id="check-themeparks-zoos-aquariums" type="checkbox">
-                                                <div class="type-filter-checkbox">
-                                                    <div class="type-filter-bubble"></div>
-                                                </div>
-                                                Theme Parks, Zoos, and Aquariums
-                                            </label>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div id="place-info">
                                 <div class="close-row-wrapper">
                                     <button id="close-place-info" class="close-sidepanel-btn">
@@ -187,7 +108,6 @@
                                     <p id="place-address" class="place-info-text"></p>
                                 </div>
                                 <div id="place-info-content">
-                                    
                                     <div id="place-info-hours" class="place-info-box place-info-nullable" data-name="openingHours">
                                         <p class="place-info-heading">Opening Hours</p>
                                         <div>
@@ -221,13 +141,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="place-info-contacts" class="place-info-box place-info-nullable" data-name="contacts">
-                                       
+                                    <div id="place-info-contacts" class="place-info-box place-info-nullable" data-name="contacts">           
                                         <p class="place-info-heading">Contacts</p>
                                         <div id="place-info-phone" class="place-info-box">
                                             <img class="place-info-img"src="images/icons/placeinfo/phone.png" alt="phone">
                                             <div id="phone-dropdown-head" class="contact-dropdown-head">
-    
                                                 <div id="phone-dropdown" class="contact-dropdown"></div>
                                             </div>
                                             <button id="phone-dropdown-btn" class="contact-dropdown-toggle">Show More</button>
@@ -248,8 +166,103 @@
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
+                            <div id="filters">
+                                <div class="close-row-wrapper">
+                                    <button id="close-filters" class="close-sidepanel-btn">
+                                        <img src="images/icons/placeinfo/x.png" alt="X">
+                                    </button>
+                                </div>
+                                <div>
+                                    <!--TODO fix the class naming here-->
+                                    <!--TODO also make a little info bubble to clarify the purpose of this section,
+                                    i.e that setting 3 - 4 PM will display all businesses that are open between those-->
+                                    <div>
+                                        <p class="place-info-heading">Search Radius</p>
+                                        <label for="distance-slider" class="place-info-text">10 miles</label>
+                                        <input id="distance-slider" type="range" min="1" max="50" value="10">
+                                    </div>
+                                    <div>
+                                        <p class="place-info-heading">Open Between</p>
+                                        <label for="hours-slider-start" class="place-info-text">Start: 3:00 PM</label>
+                                        <input id="hours-slider-start" type="range" min="0" max="23" value="15">
+                                        <label for="hours-slider-end" class="place-info-text">End: 4:00 PM</label>
+                                        <input id="hours-slider-end" type="range" min="0" max="23" value="16">
+                                        
+                                        <label for="hours-filter-day" class="place-info-text">Starting on:</label>
+                                        <div>
+                                            <select id="hours-filter-day" class="dayfilter-dropdown place-info-text" value="-1">
+                                                <option value="-1" class="place-info-text">Today's Date</option>
+                                                <option value="0" class="place-info-text">Sunday</option>
+                                                <option value="1" class="place-info-text">Monday</option>
+                                                <option value="2" class="place-info-text">Tuesday</option>
+                                                <option value="3" class="place-info-text">Wednesday</option>
+                                                <option value="4" class="place-info-text">Thursday</option>
+                                                <option value="5" class="place-info-text">Friday</option>
+                                                <option value="6" class="place-info-text">Saturday</option>
+                                            </select
+                                        </div>
+                                    
+                                    
+                                    </div>
+                                    <div id="place-type-filters">
+                                        <p class="place-info-heading">Place Types</p>
+                                        <div>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-food-and-drink" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Food and Drink
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-entertainment" type="checkbox" >
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Entertainment
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-museums" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Galleries and Museums
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-landmarks-and-monuments" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Landmarks and Monuments
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-shopping" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Shopping
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-outdoor-recreation" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Outdoor Recreation
+                                            </label>
+                                            <label class="type-filter-checkitem place-info-text">
+                                                <input id="check-themeparks-zoos-aquariums" type="checkbox">
+                                                <div class="type-filter-checkbox">
+                                                    <div class="type-filter-bubble"></div>
+                                                </div>
+                                                Theme Parks, Zoos, and Aquariums
+                                            </label>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                            
                         </div>
                     </div>
                 </main>

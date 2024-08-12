@@ -436,7 +436,7 @@ input[type="range"]:focus {
   background-color: #add8e6;
   border-radius: 5px;
   height: var(--trackheight);
-  border: 3px var(--accent) solid;
+  border: 2px var(--accent) solid;
 }
 
 /* slider thumb */
@@ -461,7 +461,7 @@ input[type="range"]:focus {
 #filters input[type="range"]::-moz-range-track {
   background-color: var(--secondaryshade1);
   border-radius: 5px;
-  border: 3px var(--accent) solid;
+  border: 2px var(--accent) solid;
   height: var(--trackheight);
 }
 
@@ -479,7 +479,19 @@ input[type="range"]:focus {
   background-color: var(--accentshade1);
 }
 
+/*Dropdown to select the day of the week*/
 
+.dayfilter-dropdown {
+  background-color: var(--secondaryshade1);
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+
+  margin: 0.5rem 0 0 0;
+}
+
+.dayfilter-dropdown option {
+  border: 0px;
+}
 /*Styling checkboxes*/
 .type-filter-checkitem {
   display: flex;

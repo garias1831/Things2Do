@@ -22,10 +22,10 @@ public static class SearchEndpoints
         group.MapPost("/", async (SearchPlaceDto request, HereService hereApi) => {
             
             //This part for loggin
-            // int off = request.Filters.Hours.TimeZoneOffset;
+            int off = request.Filters.Hours.TimeZoneOffset;
             // Log.Information($"Timezone offset: {off}");
             // Log.Information($"Distance: {request.Filters.Distance}"); 
-            // Log.Information($"Hours: {request.Filters.Hours.Start.AddMinutes(off)} - {request.Filters.Hours.End.AddMinutes(off)}"); //conv to local
+            Log.Information($"Hours: {request.Filters.Hours.Start.AddMinutes(off)} - {request.Filters.Hours.End.AddMinutes(off)}"); //conv to local
             // Log.Information($"Types: {request.Filters.TypeFilters}");
 
             //May export this into seperate method but this works
