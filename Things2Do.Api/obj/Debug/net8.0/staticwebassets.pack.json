@@ -1,0 +1,93 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\filter.png",
+      "PackagePath": "staticwebassets\\images\\icons\\filter.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\filterblue.png",
+      "PackagePath": "staticwebassets\\images\\icons\\filterblue.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\globe.png",
+      "PackagePath": "staticwebassets\\images\\icons\\globe.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\home.png",
+      "PackagePath": "staticwebassets\\images\\icons\\home.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\info.png",
+      "PackagePath": "staticwebassets\\images\\icons\\info.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\locationpin.png",
+      "PackagePath": "staticwebassets\\images\\icons\\locationpin.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\magnify.png",
+      "PackagePath": "staticwebassets\\images\\icons\\magnify.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\magnifyblue.png",
+      "PackagePath": "staticwebassets\\images\\icons\\magnifyblue.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\placeinfo\\email.png",
+      "PackagePath": "staticwebassets\\images\\icons\\placeinfo\\email.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\placeinfo\\phone.png",
+      "PackagePath": "staticwebassets\\images\\icons\\placeinfo\\phone.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\placeinfo\\pingreen.png",
+      "PackagePath": "staticwebassets\\images\\icons\\placeinfo\\pingreen.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\placeinfo\\web.png",
+      "PackagePath": "staticwebassets\\images\\icons\\placeinfo\\web.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\icons\\placeinfo\\x.png",
+      "PackagePath": "staticwebassets\\images\\icons\\placeinfo\\x.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\images\\mapicons\\homepin.png",
+      "PackagePath": "staticwebassets\\images\\mapicons\\homepin.png"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\js\\mapfunctions.js",
+      "PackagePath": "staticwebassets\\js\\mapfunctions.js"
+    },
+    {
+      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Things2Do.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Things2Do.Api.props",
+      "PackagePath": "build\\Things2Do.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Things2Do.Api.props",
+      "PackagePath": "buildMultiTargeting\\Things2Do.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Things2Do.Api.props",
+      "PackagePath": "buildTransitive\\Things2Do.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
