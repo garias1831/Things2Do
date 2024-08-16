@@ -27,7 +27,7 @@ public class HereService
             new MediaTypeWithQualityHeaderValue("application/json")
         );
         
-        _apiKey = Environment.GetEnvironmentVariable("HereKey")!;
+        _apiKey = Environment.GetEnvironmentVariable("HERE_KEY")!;
     }
 
     public async Task<List<PlaceDeserialized>> GetPlacesAsync(SearchPlaceDto request)

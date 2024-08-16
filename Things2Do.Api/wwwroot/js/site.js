@@ -280,7 +280,6 @@ function renderContactDropdown(contactType, contactArr) {
     }
 
     toggleBtn.onclick = () => toggleDropdown(); //want to ovveride each time
-
 }
 
 //The dropdown menu rendered when the 'show more' btn of a contact type is pressed
@@ -479,7 +478,8 @@ async function search() {
             lng: user.lng,
             filters: user.filters
         });
-
+        
+        //FOR LOCAL TESTS: "http://localhost:5057/search"
         const response = await fetch("http://localhost:5057/search", {
             method: "POST",
             headers: {

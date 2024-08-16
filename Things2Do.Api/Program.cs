@@ -1,18 +1,44 @@
+using System.Net;
 using Serilog; 
 using Things2Do.Api.Endpoints;
 using Things2Do.Api.Services;
 
-// var builder = WebApplication.CreateBuilder();
-
-//TODO -- temp !
-var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
-{
-    WebRootPath = @"..\..\frontend\wwwroot"
-});
-
+var builder = WebApplication.CreateBuilder();
 builder.Configuration.AddEnvironmentVariables();
 
-// builder.WebHost.UseWebRoot(@"..\..\frontend\wwwroot");
+//Config kestrel sever to accept https connections
+builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+{
+    //FIXME (?) -- need to see if this works in production 
+    int insecurePort;
+    int securePort;
+    if (builder.Environment.IsDevelopment())
+    {
+        insecurePort = 5000;
+        securePort = 5001;
+    }
+    else
+    {
+        insecurePort = 80;
+        securePort = 443;
+    }
+
+    //Overrides appsettings.json and launchsettings.json
+    serverOptions.Listen(IPAddress.Loopback, insecurePort);
+    serverOptions.Listen(IPAddress.Loopback, securePort, listenOptions =>
+    {
+        listenOptions.UseHttps(
+            "things2doapp.com.pfx", 
+            Environment.GetEnvironmentVariable("CERT_PASS")
+        );
+    });
+});
+
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.MaxAge = TimeSpan.FromDays(60); //TEMP
+});
 
 builder.Services.AddHttpClient<HereService>();
 
@@ -35,8 +61,14 @@ builder.Services.AddSerilog();
 
 var app = builder.Build();
 
-// app.UseHttpsRedirection();
-app.UseDefaultFiles();
+
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHsts();
+}
+app.UseHttpsRedirection();
+
+app.UseDefaultFiles(); //Need this to display index.html on startup
 app.UseStaticFiles();
 
 app.UseCors();

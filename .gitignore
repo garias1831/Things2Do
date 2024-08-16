@@ -1,2 +1,3 @@
-backend/Things2Do.Api/testBasic.http
-backend/Things2Do.Api/testNew.http
+Things2Do.Api/testBasic.http
+Things2Do.Api/testNew.http
+THings2Do.Api/things2doapp.com.pfx
