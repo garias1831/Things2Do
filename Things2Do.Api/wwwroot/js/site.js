@@ -84,7 +84,8 @@ function mapSetup() {
     //Set up the search location marker
     const homeIcon = L.icon({
         iconUrl: 'images/mapicons/homepin.png',
-        iconSize: [35, 65]
+        iconSize: [35, 65],
+        iconAnchor: [17.5, 65]
     })
 
     const homemarker = L.marker([initX, initY], {
