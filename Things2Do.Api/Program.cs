@@ -34,12 +34,6 @@ builder.WebHost.ConfigureKestrel((context, serverOptions) =>
     });
 });
 
-builder.Services.AddHsts(options =>
-{
-    options.Preload = true;
-    options.MaxAge = TimeSpan.FromDays(60); //TEMP
-});
-
 builder.Services.AddHttpClient<HereService>();
 
 builder.Services.AddCors(options => 

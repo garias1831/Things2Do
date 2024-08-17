@@ -96,7 +96,14 @@ public class PrePlaceFiltering
         {
             //TODO NEED TO FIX THIS ONE -> more refined categories = better
             codes.AddRange([
-                PlaceCategories.Leisure
+                PlaceCategories.Leisure,
+                PlaceCategories.AmusementPark,
+                PlaceCategories.Zoo,
+                PlaceCategories.WildAnimalPark,
+                PlaceCategories.WildlifeRefuge,
+                PlaceCategories.Aquarium,
+                PlaceCategories.SkiResort,
+                PlaceCategories.WaterPark
             ]);
         }
         

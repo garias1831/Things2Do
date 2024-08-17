@@ -48,6 +48,19 @@ public static class PlaceCategories
 
     public static string Leisure { get {return "550-5520-0000";}}
 
+    public static string AmusementPark { get {return "550-5520-0207";}}
+
+    public static string Zoo { get {return "550-5520-0208";}}
+
+    public static string WildAnimalPark { get {return "550-5520-0209";}}
+
+    public static string WildlifeRefuge { get {return "550-5520-0210";}}
+
+    public static string Aquarium { get {return "550-5520-0211";}}
+
+    public static string SkiResort { get {return "550-5520-0212";}}
+
+    public static string WaterPark { get {return "550-5520-0357";}}
 
     //600 - Shopping
     public static string ShoppingMall { get {return "600-6100-0062";}}
