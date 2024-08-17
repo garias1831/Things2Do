@@ -480,8 +480,10 @@ async function search() {
             filters: user.filters
         });
         
-        //FOR LOCAL TESTS: "http://localhost:5057/search"
-        const response = await fetch("http://localhost:5057/search", {
+        //FOR LOCAL TESTS: "http://localhost:5000/search" -->
+        //This can't be through https because the ssl cert we're using here (noot the .net dev 1)
+        //Only applies to the actual domain name, and won't work on localhost
+        const response = await fetch("http://localhost:5000/search", {
             method: "POST",
             headers: {
                 "Accept" : "application/json",

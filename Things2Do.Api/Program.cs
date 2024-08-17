@@ -47,7 +47,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy.AllowAnyOrigin() //FIXME -- replace origin w/ domain name
-              .WithMethods("POST")
+              .AllowAnyMethod()
               .AllowAnyHeader(); //May want 2 customize? but prob fine
     });
 });
@@ -65,8 +65,8 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
+    app.UseHttpsRedirection();
 }
-app.UseHttpsRedirection();
 
 app.UseDefaultFiles(); //Need this to display index.html on startup
 app.UseStaticFiles();
