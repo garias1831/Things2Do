@@ -602,19 +602,37 @@ input[type="range"]:focus {
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+
   margin: 5px;
   background-color: var(--secondary);
   height: 5rem;
+  padding: 10px;
 
-  text-align: center;
-  position: relative;
+  text-align: left;
+
+  font-family: 'Noto Serif';
+  color: var(--background);
 }
 
-footer > p {
+.footer-text {
+  font-family: inherit;
+  color: inherit;
+  font-size: 0.75rem;
+
+  margin: 0;
+}
+
+footer p.footer-text {
   margin: auto;
-  position: absolute;
+  /* position: absolute; */
 
   left: 1rem;
   bottom: 1rem;
   /* vertical-align: middle; */
+}
+
+footer a {
+  color: var(--background);
 }

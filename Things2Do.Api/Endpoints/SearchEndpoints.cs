@@ -14,7 +14,10 @@ public static class SearchEndpoints
 {
     public static RouteGroupBuilder MapSearchEndpoints(this WebApplication app)
     {
-        //WithParameterValidation() from MinimalApis.Extensions package
+        /*
+            WithParameterValidation() from MinimalApis.Extensions package licensed under the MIT license
+            https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/LICENSE
+        */
         var group = app.MapGroup("search").WithParameterValidation(); 
         
         //Location + filter information transmitted in body

@@ -2,8 +2,7 @@
 const user = userSetup();
 
 /*Sets up the user object representing all the data*/
-function userSetup() {
-    //Server should process LOCAL (client) TIME
+function userSetup() {    
     const currDate = new Date();
     const startDate = new Date(
         currDate.getFullYear(),
@@ -22,7 +21,7 @@ function userSetup() {
         0,
         0
     );
-    
+
     const placeFilters = {
         distance: 16093, //10 mi
         requireHoursInfo: false,
