@@ -97,10 +97,6 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\js\\mapfunctions.js",
-      "PackagePath": "staticwebassets\\js\\mapfunctions.js"
-    },
-    {
       "Id": "E:\\code\\csharp\\aspdotnet\\Things2Do\\Things2Do.Api\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

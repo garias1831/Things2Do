@@ -1,0 +1,638 @@
+/*Config n app setup stuff*/
+:root {
+    --text: #2f2f37;
+    --background: #F8F8F9;
+    --primary: #1f90d6;
+    --secondary: #81bcd9;
+    --secondaryshade1: #A1CDE4 ;
+    --secondaryshade2: #c0deec;
+    --accent: #3c6138;
+    --accentshade1: #638160;
+
+    --mapheight: 55rem;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Noto%20Serif:700|Noto%20Serif:400');
+
+
+body {
+  font-family: 'Noto Serif';
+  font-weight: 400;
+
+  background-color: var(--background);
+}
+
+#maincontent {
+  margin: 1rem;
+  margin-bottom: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  /* font-weight: 700; */
+  color: var(--text);
+}
+
+html {font-size: 100%;} /* 16px */
+
+h1 {
+  font-size: 2.489rem; /* 39.84px */
+  margin-bottom: 0;
+}
+
+
+h2 {font-size: 2.074rem; /* 33.12px */}
+
+h3 {font-size: 1.728rem; /* 27.68px */}
+
+h4 {font-size: 1.440rem; /* 23.04px */}
+
+h5 {font-size: 1.200rem; /* 19.2px */}
+
+small {font-size: 0.833rem; /* 13.28px */}
+
+/*Actual stuff*/
+
+/*Header / website title*/
+#title > h1 {
+  font-size: 4rem;
+}
+
+#subtitle > p {
+  font-size: 1.44rem;
+  text-align: center;
+  margin: 0%;
+  padding: 0 3em 0.275em 11px ; /*TODO -- may need to fix*/
+}
+
+#subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.titlerow {
+  border-bottom: 5px var(--secondary) solid;
+}
+
+#titlerow-right {
+  flex-grow: 1; /*Flex grow: 1 tells the div to fill 100% of the free space*/
+}
+
+/*About section*/
+#info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-text {
+  color: var(--background);
+  margin: 0;
+}
+
+.info-img {
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+.info-card {
+  background-color: var(--secondary);
+}
+
+.info-card-light {
+  background-color: var(--secondaryshade1);
+}
+
+.info-card-light-wrapper {
+  display: flex;
+  justify-content: right;
+}
+
+.info-card, .info-card-light {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 0.5rem;
+  margin: 0 0 2rem 0;
+  width: fit-content
+}
+
+.fill {
+  flex-grow: 1;
+}
+
+.info-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.info-content {
+  display: flex;
+  align-items: center;
+  padding: 0 max(2rem, 15vw) 2rem max(2rem, 15vw);
+}
+
+/*Map, sidebar and search buttons*/
+#map-container {
+  display: flex;
+  height: var(--mapheight);
+  margin: 0 0 4rem 0;
+}
+
+/*Sidebar styles*/
+
+#map-sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent);
+  width: 6rem;
+  padding: 1rem 0 1rem 0;
+}
+
+.sidebar-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--accent);
+  border: 0;
+  border-radius: 10px;
+  height: 4rem;
+}
+
+.sidebar-img {
+  justify-self: center;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/*Search button*/
+.sidebar-btn:last-of-type {
+  margin-top: auto;
+}
+
+.sidebar-btn:hover {
+  background-color: var(--accentshade1);
+  cursor: pointer;
+}
+
+#map {
+  position: relative;
+  flex-grow: 1;
+}
+
+/*Place info styles*/
+#place-info {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: clamp(15rem, 25rem, 45%); /*FIXME this should DEFINITELY be clamped*/
+  padding: 0.5rem;
+  z-index: 1000; /*So it sits on top of the map*/
+  background-color: var(--secondary);
+
+  font-family: 'Noto Serif';
+  color: var(--background);
+
+  overflow-y: auto; /*Scroll if the info is too much*/
+}
+
+/*Defaults to drag bc place-info sits ontop of leaflet map*/
+#place-info:hover, #filters:hover {
+  cursor: auto;
+}
+
+.slidein-left {
+  /*This looks fine, but could def. be better*/
+  animation: 0.15s linear slidein-left;
+}
+
+.slideout-left {
+  animation: 0.15s linear slideout-left;
+}
+
+/*Animation for side panels sliding in / out*/
+/*FIXME Jumps a lil fast on first press of a pin*/
+@keyframes slidein-left {
+  0% {
+    translate: -100% 0;
+  }
+  100% {
+    translate: 0% 0;
+  }
+}
+
+@keyframes slideout-left {
+  0% {
+    translate: 0% 0;
+  }
+  100% {
+    translate: -100% 0;
+  }
+}
+
+.close-sidepanel-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+
+  background: var(--secondary);
+  border: 0px;
+  border-radius: 50%;
+}
+
+.close-sidepanel-btn:hover {
+  background: var(--secondaryshade1);
+}
+
+.close-row-wrapper {
+  display: flex;
+  justify-content: right;
+}
+
+
+#place-title {
+  font-family: 'Noto Serif';
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--background);
+}
+
+.place-info-text {
+  font-family: 'Noto Serif';
+  font-size: 1rem;
+  color: var(--background);
+}
+
+#place-address-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.place-info-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*4 little img icons, should prob rename*/
+.place-info-img {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.place-info-heading {
+  font-family: 'Noto Serif';
+  color: var(--background);
+  font-weight: bold;
+  font-size: 1.25rem;
+
+  /*For the highlight effect*/
+  background: linear-gradient(
+    180deg,
+    var(--secondary) 40%,
+    rgba(60, 97, 51, 60%) 40% /*Standard accent green*/
+  );
+
+  width: fit-content;
+  padding: 0 5px 0 0;
+  margin-bottom: 0;
+}
+
+
+
+
+/*Dropdown menu in the contacts*/
+.contact-dropdown-head {
+  position: relative;
+}
+
+.contact-dropdown {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: 100%; /*push down by height of container (first entry)*/
+}
+
+/*Pushes the btn left (left margin consumes as much space as possible)*/
+.contact-dropdown-toggle{
+  background-color: var(--secondary);
+  font-family: inherit;
+  color: inherit;
+
+  border-radius: 15px;
+  border: 0;
+}
+
+.contact-dropdown-toggle:hover {
+  background-color: var(--secondaryshade1);
+}
+
+.contact-dropdown-item {
+  background: var(--secondary);
+  padding: 0.2rem;
+}
+
+/*Honestly would rather have it push down, but this works fine*/
+.contact-dropdown > .contact-dropdown-item {
+  border: 1px var(--accent) solid;
+  border-radius: 5px; 
+}
+
+.contact-dropdown-item a{
+  font-family: inherit;
+  color: inherit;  
+}
+
+.show { /*This sucks*/
+  display: block;
+}
+
+/*Opening hours styles*/
+
+.info-hours-entry { /*FIXME -- want them closer, ideally, but this works*/
+  margin: 0 0 1rem 0 ;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-hours-entry:last-child {
+  margin: 0px;
+}
+
+/*Ever so slightly misaligned, but its whatever*/
+.info-hours-entry p {
+  margin: 0px;
+  flex: 1;
+}
+
+.info-hours-entry p:first-child{ /*The d8 (mon, tues, wed, etc)*/
+  font-size: 1.25rem;
+  margin-right: 2rem;
+}
+
+.info-hours-entry p:last-child {
+  margin: 0px;
+}
+
+/*Style the filter left hand thingy*/
+
+/*NOTE -- potentially bad thing about this is that its the same size as the placeinfo thing, which means if hte user
+searches while placing their filters thers not much visual indication of a change
+Should b okay tho*/
+#filters { /*Same as styles for place info, but takes priority over it*/
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: clamp(15rem, 25rem, 45%); /*FIXME this should prob b more*/
+  padding: 0.5rem;
+  z-index: 1001; /*Sit on top of place info*/
+  background-color: var(--secondary);
+
+  font-family: 'Noto Serif';
+  color: var(--background);
+
+  overflow-y: auto; /*Scroll if the info is too much*/
+}
+
+/*The custom slidebars used for this section*/
+/*https://range-input-css.netlify.app/ was amazing here*/
+
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+#filters input[type="range"] {
+  --thumbheight: 2.25rem;
+  --thumbwidth: 0.75rem;
+  --trackheight: 0.85rem;
+  
+  display: block;
+  width: 75%;
+
+  margin: 0.75rem 0 0.75rem 0;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+#filters input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #add8e6;
+  border-radius: 5px;
+  height: var(--trackheight);
+  border: 2px var(--accent) solid;
+}
+
+/* slider thumb */
+#filters input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  /*Vsry sligltly offcenter in chrome, safari etc, but not super noticable*/
+  margin-top: calc((var(--trackheight) / 2) - (var(--thumbheight) /2)); 
+  background-color: var(--accent);
+  border-radius: 5px;
+  height: var(--thumbheight);
+  width: var(--thumbwidth);
+}
+
+#filters input[type="range"]:focus::-webkit-slider-thumb {
+  border: 3px solid var(--accent);
+  background-color: var(--accentshade1);
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+#filters input[type="range"]::-moz-range-track {
+  background-color: var(--secondaryshade1);
+  border-radius: 5px;
+  border: 2px var(--accent) solid;
+  height: var(--trackheight);
+}
+
+/* slider thumb */
+#filters input[type="range"]::-moz-range-thumb {
+  background-color: var(--accent);
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 5px;
+  height: var(--thumbheight);
+  width: var(--thumbwidth);
+}
+
+#filters input[type="range"]:focus::-moz-range-thumb{
+  border: 3px solid var(--accent);
+  background-color: var(--accentshade1);
+}
+
+/*Dropdown to select the day of the week*/
+
+.dayfilter-dropdown {
+  background-color: var(--secondaryshade1);
+  border: 2px solid var(--accent);
+  border-radius: 5px;
+
+  margin: 0.5rem 0 0 0;
+}
+
+.dayfilter-dropdown option {
+  border: 0px;
+}
+
+.requireinfo-checkitem {
+  display: flex;
+  align-items: center;
+
+  margin: 0.5rem 0 0;
+}
+
+/* On mouse-over, add a background color */
+.requireinfo-checkitem:hover input ~ .type-filter-checkbox {
+  background-color: var(--secondaryshade2);
+}
+
+/* When checkbox is checked toggle the inner bubble */
+.requireinfo-checkitem input:checked ~ .type-filter-checkbox > .type-filter-bubble {
+  background-color: var(--accent);
+}
+
+
+#filter-row-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(25rem, 85%); /*Checkbox gets squished a lil*/
+}
+
+#requirehours-info-img {
+  width: 1rem;
+  height: 1rem;
+}
+
+#requirehours-tooltip {
+  display: none;
+  position: absolute;
+  right: 0; 
+
+  width: 10rem;
+  padding: 2px;
+
+
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background-color: var(--secondary);
+  font-size: 0.75rem;
+}
+
+#tooltip-wrapper {
+  position: relative;
+  height: 1.25rem;
+  width: 1rem;
+}
+
+#tooltip-wrapper:hover #requirehours-tooltip {
+  display: block;
+}
+
+
+
+/*Styling checkboxes*/
+.type-filter-checkitem {
+  display: flex;
+  align-items: center;
+
+  margin: 0.5rem 0 0.5rem;
+  width: fit-content;
+}
+
+.type-filter-checkitem input, .requireinfo-checkitem input {
+  /*hide default checkbox*/
+  /*This works because the label wraps around our input, so
+  we still toggle the checkbox by just clicking on the text*/
+  position: absolute;
+  opacity: 0;
+  /* cursor: pointer; */
+  height: 0;
+  width: 0;
+}
+
+.type-filter-checkbox {
+
+  /* box-sizing: border-box; */
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 2px;   /*Need this 4 the little bubble*/
+  margin: 0 0.5rem 0 0;
+ 
+
+  background-color: var(--secondaryshade1);
+  border-radius: 5px;
+  
+  border: 1px solid var(--accent);
+}
+
+.type-filter-bubble {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+/* On mouse-over, add a background color */
+.type-filter-checkitem:hover input ~ .type-filter-checkbox {
+  background-color: var(--secondaryshade2);
+}
+
+/* When checkbox is checked toggle the inner bubble */
+.type-filter-checkitem input:checked ~ .type-filter-checkbox > .type-filter-bubble {
+  background-color: var(--accent);
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+
+  margin: 5px;
+  background-color: var(--secondary);
+  height: 5rem;
+  padding: 10px;
+
+  text-align: left;
+
+  font-family: 'Noto Serif';
+  color: var(--background);
+}
+
+.footer-text {
+  font-family: inherit;
+  color: inherit;
+  font-size: 0.75rem;
+
+  margin: 0;
+}
+
+footer p.footer-text {
+  margin: auto;
+  /* position: absolute; */
+
+  left: 1rem;
+  bottom: 1rem;
+  /* vertical-align: middle; */
+}
+
+footer a {
+  color: var(--background);
+}

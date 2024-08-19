@@ -10,22 +10,12 @@ builder.Configuration.AddEnvironmentVariables();
 builder.WebHost.ConfigureKestrel((context, serverOptions) =>
 {
     //FIXME (?) -- need to see if this works in production 
-    int insecurePort;
-    int securePort;
-    if (builder.Environment.IsDevelopment())
-    {
-        insecurePort = 5000;
-        securePort = 5001;
-    }
-    else
-    {
-        insecurePort = 80;
-        securePort = 443;
-    }
+    
+    
 
     //Overrides appsettings.json and launchsettings.json
-    serverOptions.Listen(IPAddress.Loopback, insecurePort);
-    serverOptions.Listen(IPAddress.Loopback, securePort, listenOptions =>
+    serverOptions.Listen(IPAddress.Loopback, 5000);
+    serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
     {
         listenOptions.UseHttps(
             "things2doapp.com.pfx", 
